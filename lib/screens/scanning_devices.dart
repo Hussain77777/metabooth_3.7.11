@@ -3,7 +3,7 @@ import 'package:metabooth/constants/colors.dart';
 import 'package:metabooth/constants/size_config.dart';
 
 class ScanningDevice extends StatefulWidget {
-  const ScanningDevice({super.key});
+  ScanningDevice({super.key});
 
   @override
   State<ScanningDevice> createState() => _ScanningDeviceState();
@@ -69,6 +69,58 @@ class _ScanningDeviceState extends State<ScanningDevice> {
                 ),
               ),
             ),
+            Container(
+              margin: EdgeInsets.only(
+                top: SizeConfig.height(context, 0.02),
+                // left: SizeConfig.width(context, 0.1),
+                // right: SizeConfig.width(context, 0.1),
+              ),
+              height: SizeConfig.height(context, 0.15),
+              width: SizeConfig.width(context, 0.8),
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage("assets/square_metabooth_dj.png"),
+                    fit: BoxFit.fill),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  ListTile(
+                    title: Text(
+                      "Metabooth",
+                      style: TextStyle(
+                          color: GlobalColors.whiteColor,
+                          fontSize: SizeConfig.width(context, 0.04),
+                          fontWeight: FontWeight.bold),
+                    ),
+                    subtitle: Text(
+                      "Online",
+                      style: TextStyle(
+                          color: GlobalColors.yellowColor,
+                          fontSize: SizeConfig.width(context, 0.03),
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Container(
+                          margin: EdgeInsets.only(
+                            right: SizeConfig.width(context, 0.03),
+                            bottom: SizeConfig.height(context, 0.01),
+                          ),
+                          height: SizeConfig.height(context, 0.040),
+                          width: SizeConfig.width(context, 0.1),
+                        //  color: Colors.red,
+                          child: Image.asset(
+                            "assets/on_button.png",
+                          ))
+                    ],
+                  )
+                ],
+              ),
+            )
           ],
         )),
       ),
