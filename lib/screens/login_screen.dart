@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:metabooth/screens/add_device_screen.dart';
 import 'package:metabooth/widgets/back_button_widget.dart';
 import 'package:metabooth/widgets/button_widget.dart';
 import 'package:metabooth/constants/colors.dart';
@@ -85,7 +86,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 padding: EdgeInsets.only(top: SizeConfig.height(context, 0.2)),
                 child: Center(
                   child: ButtonWidget(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>AddDeviceScreen()));
+                    },
                     title: "Login",
                     borderColor: Color(0xFFC8DE00),
                     innerColor: Color(0xFFC8DE00),
