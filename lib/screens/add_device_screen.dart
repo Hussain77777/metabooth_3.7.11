@@ -21,7 +21,7 @@ class _AddDeviceScreenState extends State<AddDeviceScreen> {
         decoration: BoxDecoration(
           image: DecorationImage(
               image: AssetImage(
-                "assets/background_image_color.png",
+                GlobalColors.back_image,
               ),
               fit: BoxFit.cover),
         ),

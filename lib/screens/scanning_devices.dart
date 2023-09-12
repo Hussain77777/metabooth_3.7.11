@@ -18,10 +18,10 @@ class _ScanningDeviceState extends State<ScanningDevice> {
         padding: EdgeInsets.only(top: SizeConfig.height(context, 0.04)),
         height: SizeConfig.height(context, 1),
         width: SizeConfig.width(context, 1),
-        decoration: BoxDecoration(
+        decoration: BoxDecoration(color: Colors.transparent,
           image: DecorationImage(
               image: AssetImage(
-                "assets/background_image_color.png",
+                GlobalColors.back_image,
               ),
               fit: BoxFit.cover),
         ),

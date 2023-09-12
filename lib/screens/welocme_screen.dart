@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:metabooth/constants/colors.dart';
 import 'package:metabooth/screens/login_or_register_screen.dart';
 import 'package:metabooth/widgets/back_button_widget.dart';
 import 'package:metabooth/widgets/button_widget.dart';
@@ -25,7 +26,7 @@ class _WelocmeScreenState extends State<WelocmeScreen> {
         decoration: BoxDecoration(
           image: DecorationImage(
               image: AssetImage(
-                "assets/background_image_color.png",
+                GlobalColors.back_image_color,
               ),
               fit: BoxFit.cover),
         ),

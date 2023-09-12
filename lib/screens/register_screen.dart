@@ -29,7 +29,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         decoration: BoxDecoration(
           image: DecorationImage(
               image: AssetImage(
-                "assets/background_image_color.png",
+                GlobalColors.back_image_color,
               ),
               fit: BoxFit.cover),
         ),

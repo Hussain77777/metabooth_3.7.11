@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:metabooth/constants/colors.dart';
 import 'package:metabooth/screens/login_screen.dart';
 import 'package:metabooth/screens/register_screen.dart';
 import 'package:metabooth/widgets/back_button_widget.dart';
@@ -29,7 +30,7 @@ class _LoginOrRegisterScreenState extends State<LoginOrRegisterScreen> {
         decoration: BoxDecoration(
           image: DecorationImage(
               image: AssetImage(
-                "assets/background_image_color.png",
+                GlobalColors.back_image_color,
               ),
               fit: BoxFit.cover),
         ),

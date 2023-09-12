@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:metabooth/constants/colors.dart';
 import 'package:metabooth/constants/size_config.dart';
+import 'package:metabooth/screens/add_group.dart';
 
 class AllDevicesScreen extends StatefulWidget {
   const AllDevicesScreen({super.key});
@@ -38,7 +39,7 @@ class _AllDevicesScreenState extends State<AllDevicesScreen> {
     "assets/on_button.png",
   ];
 
-  bool isAddDevices=false;
+  bool isAddDevices = false;
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +53,7 @@ class _AllDevicesScreenState extends State<AllDevicesScreen> {
         decoration: BoxDecoration(
           image: DecorationImage(
               image: AssetImage(
-                "assets/background_image_color.png",
+                GlobalColors.back_image,
               ),
               fit: BoxFit.cover),
         ),
@@ -85,139 +86,160 @@ class _AllDevicesScreenState extends State<AllDevicesScreen> {
                       : groupsWidget(context)
                 ],
               ),
-              (isAddDevices)?     Positioned(
-                left: SizeConfig.width(context, 0.2),
-                // top: SizeConfig.height(context, 0.6),
-                bottom: 0,
-                child: Container(
-                  height: SizeConfig.height(context, 0.12),
-
-                  decoration: BoxDecoration(
-                    //            color: Colors.red,
-                    image: DecorationImage(
-                        image: AssetImage("assets/add_new_device.png"),
-                        fit: BoxFit.fill),
-                  ),
-                  child: Column(
-                    children: [
-                      Container(
-                        height: SizeConfig.height(context, 0.08),
-                        //   color: Colors.yellow,
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              (isAddDevices)
+                  ? Positioned(
+                      left: SizeConfig.width(context, 0.2),
+                      // top: SizeConfig.height(context, 0.6),
+                      bottom: 0,
+                      child: Container(
+                        height: SizeConfig.height(context, 0.12),
+                        decoration: BoxDecoration(
+                          //            color: Colors.red,
+                          image: DecorationImage(
+                              image: AssetImage("assets/add_new_device.png"),
+                              fit: BoxFit.fill),
+                        ),
+                        child: Column(
                           children: [
                             Container(
                               height: SizeConfig.height(context, 0.08),
-                              width: SizeConfig.width(context, 0.3),
-                              //  color: Colors.blue,
-                              child: Column(
+                              //   color: Colors.yellow,
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                        top: SizeConfig.height(context, 0.01)),
-                                    child: Image.asset(
-                                      "assets/add_icon.png",
-                                      width: SizeConfig.width(context, 0.07),
-                                    ),
-                                  ),
-                                  RichText(
-                                    text: TextSpan(
-                                      text: '',
-                                      //   style: DefaultTextStyle.of(context).style,
-                                      children: <TextSpan>[
-                                        TextSpan(
-                                          text: "Add",
-                                          style: TextStyle(
-                                            // fontWeight: FontWeight.bold,
-                                            fontFamily: "Inter",
-                                            color: GlobalColors.whiteColor,
-                                            fontSize: SizeConfig.width(
-                                                context, 0.035),
+                                  Container(
+                                    height: SizeConfig.height(context, 0.08),
+                                    width: SizeConfig.width(context, 0.3),
+                                    //  color: Colors.blue,
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Padding(
+                                          padding: EdgeInsets.only(
+                                              top: SizeConfig.height(
+                                                  context, 0.01)),
+                                          child: Image.asset(
+                                            "assets/add_icon.png",
+                                            width:
+                                                SizeConfig.width(context, 0.07),
                                           ),
                                         ),
-                                        TextSpan(
-                                          text: " Device",
-                                          style: TextStyle(
-                                            color: GlobalColors.yellowColor,
-                                            //   fontWeight: FontWeight.bold,
-                                            fontFamily: "Inter",
-                                            fontSize: SizeConfig.width(
-                                                context, 0.035),
+                                        RichText(
+                                          text: TextSpan(
+                                            text: '',
+                                            //   style: DefaultTextStyle.of(context).style,
+                                            children: <TextSpan>[
+                                              TextSpan(
+                                                text: "Add",
+                                                style: TextStyle(
+                                                  // fontWeight: FontWeight.bold,
+                                                  fontFamily: "Inter",
+                                                  color:
+                                                      GlobalColors.whiteColor,
+                                                  fontSize: SizeConfig.width(
+                                                      context, 0.035),
+                                                ),
+                                              ),
+                                              TextSpan(
+                                                text: " Device",
+                                                style: TextStyle(
+                                                  color:
+                                                      GlobalColors.yellowColor,
+                                                  //   fontWeight: FontWeight.bold,
+                                                  fontFamily: "Inter",
+                                                  fontSize: SizeConfig.width(
+                                                      context, 0.035),
+                                                ),
+                                              ),
+                                            ],
                                           ),
-                                        ),
+                                        )
                                       ],
                                     ),
-                                  )
+                                  ),
+                                  GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  AddGroup()));
+                                    },
+                                    child: Container(
+                                      height: SizeConfig.height(context, 0.08),
+                                      width: SizeConfig.width(context, 0.3),
+                                      //  color: Colors.blue,
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                                top: SizeConfig.height(
+                                                    context, 0.01)),
+                                            child: Image.asset(
+                                              "assets/add_group.png",
+                                              width: SizeConfig.width(
+                                                  context, 0.07),
+                                            ),
+                                          ),
+                                          RichText(
+                                            text: TextSpan(
+                                              text: '',
+                                              //   style: DefaultTextStyle.of(context).style,
+                                              children: <TextSpan>[
+                                                TextSpan(
+                                                  text: "New",
+                                                  style: TextStyle(
+                                                    // fontWeight: FontWeight.bold,
+                                                    fontFamily: "Inter",
+                                                    color:
+                                                        GlobalColors.whiteColor,
+                                                    fontSize: SizeConfig.width(
+                                                        context, 0.035),
+                                                  ),
+                                                ),
+                                                TextSpan(
+                                                  text: " Group",
+                                                  style: TextStyle(
+                                                    color: GlobalColors
+                                                        .yellowColor,
+                                                    //   fontWeight: FontWeight.bold,
+                                                    fontFamily: "Inter",
+                                                    fontSize: SizeConfig.width(
+                                                        context, 0.035),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),
-                            Container(
-                              height: SizeConfig.height(context, 0.08),
-                              width: SizeConfig.width(context, 0.3),
-                              //  color: Colors.blue,
-                              child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                        top: SizeConfig.height(context, 0.01)),
-                                    child: Image.asset(
-                                      "assets/add_group.png",
-                                      width: SizeConfig.width(context, 0.07),
-                                    ),
-                                  ),
-                                  RichText(
-                                    text: TextSpan(
-                                      text: '',
-                                      //   style: DefaultTextStyle.of(context).style,
-                                      children: <TextSpan>[
-                                        TextSpan(
-                                          text: "New",
-                                          style: TextStyle(
-                                            // fontWeight: FontWeight.bold,
-                                            fontFamily: "Inter",
-                                            color: GlobalColors.whiteColor,
-                                            fontSize: SizeConfig.width(
-                                                context, 0.035),
-                                          ),
-                                        ),
-                                        TextSpan(
-                                          text: " Group",
-                                          style: TextStyle(
-                                            color: GlobalColors.yellowColor,
-                                            //   fontWeight: FontWeight.bold,
-                                            fontFamily: "Inter",
-                                            fontSize: SizeConfig.width(
-                                                context, 0.035),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  )
-                                ],
+                            Center(
+                              child: Text(
+                                "x",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: SizeConfig.width(context, 0.05)),
                               ),
-                            ),
+                            )
                           ],
                         ),
                       ),
-                      Center(
-                        child: Text(
-                          "x",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: SizeConfig.width(context, 0.05)),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ):Container(),
+                    )
+                  : Container(),
             ],
           ),
         ),
@@ -363,19 +385,21 @@ class _AllDevicesScreenState extends State<AllDevicesScreen> {
       padding: EdgeInsets.all(SizeConfig.width(context, 0.06)),
       child: Row(
         children: [
-          InkWell(onTap: (){
-            setState(() {
-
-            isAddDevices=!isAddDevices;
-            });
-          },
+          InkWell(
+            onTap: () {
+              setState(() {
+                isAddDevices = !isAddDevices;
+              });
+            },
             child: Container(
               height: SizeConfig.height(context, 0.04),
               width: SizeConfig.width(context, 0.08),
               decoration: BoxDecoration(
                 borderRadius:
                     BorderRadius.circular(SizeConfig.width(context, 0.1)),
-                border: Border.all(color:!isAddDevices? Colors.grey:GlobalColors.yellowColor),
+                border: Border.all(
+                    color:
+                        !isAddDevices ? Colors.grey : GlobalColors.yellowColor),
                 //color: Colors.red,
               ),
               child: Center(
