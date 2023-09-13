@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hsvcolor_picker/flutter_hsvcolor_picker.dart';
 import 'package:metabooth/constants/colors.dart';
 import 'package:metabooth/constants/size_config.dart';
+import 'package:metabooth/screens/settings.dart';
 
 class ColorPickerScreen extends StatefulWidget {
   const ColorPickerScreen({super.key});
@@ -48,6 +49,9 @@ class _ColorPickerScreenState extends State<ColorPickerScreen> {
           setState(() {
             _page = index;
           });
+          if(index==4){
+            Navigator.push(context,MaterialPageRoute(builder: (context)=>Settings()));
+          }
         },
         letIndexChange: (index) => true,
       ),
@@ -66,70 +70,74 @@ class _ColorPickerScreenState extends State<ColorPickerScreen> {
         ),
         child: SingleChildScrollView(
             child: Column(
-              children: [
-                Container(
-                  height: SizeConfig.height(context, 0.07),
-                  //    color: Colors.red,
-                  margin: EdgeInsets.symmetric(
-                    horizontal: SizeConfig.width(context, 0.2),
-                    //     vertical: SizeConfig.height(context, 0.035)
-                  ),
-                  child: Image.asset(
-                    "assets/metabooth.png",
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(
-                    left: SizeConfig.width(context, 0.06),
-                    top: SizeConfig.height(context, 0.02),
-                    right: SizeConfig.width(context, 0.04),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.arrow_back,
-                            color: Colors.white,
-                            size: SizeConfig.width(context, 0.05),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(
-                                left: SizeConfig.width(context, 0.03)),
-                            child: Text(
-                              "Back",
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: SizeConfig.width(context, 0.035)),
-                            ),
-                          )
-                        ],
-                      ),
-                      Column(
-                        children: [
-                          Text(
-                            "MetaTube",
+          children: [
+            Container(
+              height: SizeConfig.height(context, 0.07),
+              //    color: Colors.red,
+              margin: EdgeInsets.symmetric(
+                horizontal: SizeConfig.width(context, 0.2),
+                //     vertical: SizeConfig.height(context, 0.035)
+              ),
+              child: Image.asset(
+                "assets/metabooth.png",
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(
+                left: SizeConfig.width(context, 0.06),
+                top: SizeConfig.height(context, 0.02),
+                right: SizeConfig.width(context, 0.04),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.arrow_back,
+                          color: Colors.white,
+                          size: SizeConfig.width(context, 0.05),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(
+                              left: SizeConfig.width(context, 0.03)),
+                          child: Text(
+                            "Back",
                             style: TextStyle(
                                 color: Colors.white,
                                 fontSize: SizeConfig.width(context, 0.035)),
                           ),
-                          Text(
-                            "Online",
-                            style: TextStyle(
-                                color: GlobalColors.yellowColor,
-                                fontSize: SizeConfig.width(context, 0.035)),
-                          ),
-                        ],
+                        )
+                      ],
+                    ),
+                  ),
+                  Column(
+                    children: [
+                      Text(
+                        "MetaTube",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: SizeConfig.width(context, 0.035)),
                       ),
-                      IconsWidget(context)
+                      Text(
+                        "Online",
+                        style: TextStyle(
+                            color: GlobalColors.yellowColor,
+                            fontSize: SizeConfig.width(context, 0.035)),
+                      ),
                     ],
                   ),
-                ),
-                _page==3?
-                BoxWidget():ColorWidget(context),
-              ],
-            )),
+                  IconsWidget(context)
+                ],
+              ),
+            ),
+            _page == 3 ? BoxWidget() : ColorWidget(context),
+          ],
+        )),
       ),
     );
   }
@@ -168,7 +176,7 @@ class _ColorPickerScreenState extends State<ColorPickerScreen> {
               decoration: BoxDecoration(
                 color: GlobalColors.yellowColor,
                 borderRadius:
-                BorderRadius.circular(SizeConfig.width(context, 0.1)),
+                    BorderRadius.circular(SizeConfig.width(context, 0.1)),
                 /* border: Border.all(
                     color:
                     GlobalColors.yellowColor),*/
@@ -189,8 +197,8 @@ class _ColorPickerScreenState extends State<ColorPickerScreen> {
             width: SizeConfig.width(context, 0.08),
             decoration: BoxDecoration(
 
-              //color: Colors.red,
-            ),
+                //color: Colors.red,
+                ),
             child: Icon(
               Icons.list,
               color: GlobalColors.yellowColor,
@@ -218,18 +226,19 @@ class BoxWidget extends StatelessWidget {
         right: SizeConfig.width(context, 0.04),
       ),
       //    color: Colors.red,
-      child: GridView.builder(itemCount: 10,
+      child: GridView.builder(
+          itemCount: 10,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 4,
               mainAxisSpacing: SizeConfig.height(context, 0.03),
-              crossAxisSpacing
-              :SizeConfig.width(context, 0.03)),
-
+              crossAxisSpacing: SizeConfig.width(context, 0.03)),
           itemBuilder: (context, index) {
             return Container(
               decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage("assets/box.png"))),
+                image: DecorationImage(
+                  image: AssetImage("assets/box.png"),
+                ),
+              ),
             );
           }),
     );

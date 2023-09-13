@@ -47,11 +47,45 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   "assets/metabooth.png",
                 ),
               ),
-              Padding(
+            /*  Padding(
                 padding:  EdgeInsets.only(top: SizeConfig.width(context, 0.06)),
-                child: MainTitleWidget(
-                  title: "Welcome to ",
-                  subTitle: "Metabooth.",
+                child: Center(
+                  child: MainTitleWidget(
+                    title: "Welcome to ",
+                    subTitle: "Metabooth.",
+                  ),
+                ),
+              ),*/
+              Padding(
+                padding: EdgeInsets.only(
+                    top: SizeConfig.height(context, 0.09),
+                    left: SizeConfig.width(context, 0.06),
+                    right: SizeConfig.width(context, 0.06)),
+                child: RichText(textAlign: TextAlign.center,
+                  text: TextSpan(
+                    text: '',
+                    //   style: DefaultTextStyle.of(context).style,
+                    children: <TextSpan>[
+                      TextSpan(
+                        text: "Welcome to ",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontFamily: "Inter",
+                          color: GlobalColors.whiteColor,
+                          fontSize: SizeConfig.width(context, 0.11),
+                        ),
+                      ),
+                      TextSpan(
+                        text: "Metabooth.",
+                        style: TextStyle(
+                          color: GlobalColors.yellowColor,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: "Inter",
+                          fontSize: SizeConfig.width(context, 0.11),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               Padding(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:metabooth/constants/colors.dart';
 import 'package:metabooth/constants/size_config.dart';
 import 'package:metabooth/screens/add_group.dart';
+import 'package:metabooth/screens/color_picker_screen.dart';
 
 class AllDevicesScreen extends StatefulWidget {
   const AllDevicesScreen({super.key});
@@ -265,49 +266,57 @@ class _AllDevicesScreenState extends State<AllDevicesScreen> {
               crossAxisSpacing: SizeConfig.width(context, 0.05),
               mainAxisSpacing: SizeConfig.height(context, 0.03)),
           itemBuilder: (context, index) {
-            return Container(
-              //height: SizeConfig.height(context, 0.1),
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage(imageList[index]), fit: BoxFit.fill),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  ListTile(
-                    title: Text(
-                      nameList[index],
-                      style: TextStyle(
-                          color: GlobalColors.whiteColor,
-                          fontSize: SizeConfig.width(context, 0.04),
-                          fontWeight: FontWeight.bold),
+            return GestureDetector(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ColorPickerScreen()));
+              },
+              child: Container(
+                //height: SizeConfig.height(context, 0.1),
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage(imageList[index]), fit: BoxFit.fill),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    ListTile(
+                      title: Text(
+                        nameList[index],
+                        style: TextStyle(
+                            color: GlobalColors.whiteColor,
+                            fontSize: SizeConfig.width(context, 0.04),
+                            fontWeight: FontWeight.bold),
+                      ),
+                      subtitle: Text(
+                        statusList[index],
+                        style: TextStyle(
+                            color: GlobalColors.yellowColor,
+                            fontSize: SizeConfig.width(context, 0.03),
+                            fontWeight: FontWeight.bold),
+                      ),
                     ),
-                    subtitle: Text(
-                      statusList[index],
-                      style: TextStyle(
-                          color: GlobalColors.yellowColor,
-                          fontSize: SizeConfig.width(context, 0.03),
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Container(
-                          margin: EdgeInsets.only(
-                            right: SizeConfig.width(context, 0.03),
-                            bottom: SizeConfig.height(context, 0.01),
-                          ),
-                          height: SizeConfig.height(context, 0.040),
-                          width: SizeConfig.width(context, 0.1),
-                          //  color: Colors.red,
-                          child: Image.asset(
-                            statusImageList[index],
-                          ))
-                    ],
-                  )
-                ],
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Container(
+                            margin: EdgeInsets.only(
+                              right: SizeConfig.width(context, 0.03),
+                              bottom: SizeConfig.height(context, 0.01),
+                            ),
+                            height: SizeConfig.height(context, 0.040),
+                            width: SizeConfig.width(context, 0.1),
+                            //  color: Colors.red,
+                            child: Image.asset(
+                              statusImageList[index],
+                            ))
+                      ],
+                    )
+                  ],
+                ),
               ),
             );
           }),
@@ -331,49 +340,56 @@ class _AllDevicesScreenState extends State<AllDevicesScreen> {
               crossAxisSpacing: SizeConfig.width(context, 0.12),
               mainAxisSpacing: SizeConfig.height(context, 0.03)),
           itemBuilder: (context, index) {
-            return Container(
-              //height: SizeConfig.height(context, 0.1),
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage(groupImageList[index]), fit: BoxFit.fill),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  ListTile(
-                    title: Text(
-                      nameList[index],
-                      style: TextStyle(
-                          color: GlobalColors.whiteColor,
-                          fontSize: SizeConfig.width(context, 0.04),
-                          fontWeight: FontWeight.bold),
+            return GestureDetector(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ColorPickerScreen()));
+              },     child: Container(
+                //height: SizeConfig.height(context, 0.1),
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage(groupImageList[index]), fit: BoxFit.fill),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    ListTile(
+                      title: Text(
+                        nameList[index],
+                        style: TextStyle(
+                            color: GlobalColors.whiteColor,
+                            fontSize: SizeConfig.width(context, 0.04),
+                            fontWeight: FontWeight.bold),
+                      ),
+                      subtitle: Text(
+                        statusList[index],
+                        style: TextStyle(
+                            color: GlobalColors.yellowColor,
+                            fontSize: SizeConfig.width(context, 0.03),
+                            fontWeight: FontWeight.bold),
+                      ),
                     ),
-                    subtitle: Text(
-                      statusList[index],
-                      style: TextStyle(
-                          color: GlobalColors.yellowColor,
-                          fontSize: SizeConfig.width(context, 0.03),
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Container(
-                          margin: EdgeInsets.only(
-                            right: SizeConfig.width(context, 0.03),
-                            bottom: SizeConfig.height(context, 0.01),
-                          ),
-                          height: SizeConfig.height(context, 0.040),
-                          width: SizeConfig.width(context, 0.1),
-                          //  color: Colors.red,
-                          child: Image.asset(
-                            statusImageList[index],
-                          ))
-                    ],
-                  )
-                ],
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Container(
+                            margin: EdgeInsets.only(
+                              right: SizeConfig.width(context, 0.03),
+                              bottom: SizeConfig.height(context, 0.01),
+                            ),
+                            height: SizeConfig.height(context, 0.040),
+                            width: SizeConfig.width(context, 0.1),
+                            //  color: Colors.red,
+                            child: Image.asset(
+                              statusImageList[index],
+                            ))
+                      ],
+                    )
+                  ],
+                ),
               ),
             );
           }),
