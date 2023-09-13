@@ -8,14 +8,14 @@ import 'package:metabooth/widgets/main_tiitle_widget.dart';
 import 'package:metabooth/widgets/register_button_widget.dart';
 import 'package:metabooth/widgets/textfield_widget.dart';
 
-class WelocmeScreen extends StatefulWidget {
-  const WelocmeScreen({super.key});
+class WelcomeScreen extends StatefulWidget {
+  const WelcomeScreen({super.key});
 
   @override
-  State<WelocmeScreen> createState() => _WelocmeScreenState();
+  State<WelcomeScreen> createState() => _WelcomeScreenState();
 }
 
-class _WelocmeScreenState extends State<WelocmeScreen> {
+class _WelcomeScreenState extends State<WelcomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
