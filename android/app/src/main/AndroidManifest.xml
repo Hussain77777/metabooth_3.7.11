@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.metabooth">
+    package="com.technologentvalley.metabooth">
    <application
-        android:label="metabooth"
+        android:label="MetaBooth"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

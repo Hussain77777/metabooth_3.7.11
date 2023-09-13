@@ -34,7 +34,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
         style: TextStyle(color: Colors.white),
         validator: widget.validator,
         controller: widget.controller,
-        obscureText: secureText,
+        obscureText:widget.isPassword==true? secureText:false,
         decoration: InputDecoration(
             suffixIcon: widget.isPassword??false
                 ? IconButton(
@@ -77,6 +77,17 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
               borderSide: BorderSide(width: 1, color: Color(0xFFC8DE00)),
               borderRadius:
               BorderRadius.circular(SizeConfig.width(context, 0.1)),
+            ),disabledBorder: OutlineInputBorder(
+          borderSide:
+          BorderSide(width: 1, color: Color(0xFFC8DE00)),
+          borderRadius: BorderRadius.circular(
+              SizeConfig.width(context, 0.1)),
+        ),
+            focusedErrorBorder: OutlineInputBorder(
+              borderSide:
+              BorderSide(width: 1, color: Color(0xFFC8DE00)),
+              borderRadius: BorderRadius.circular(
+                  SizeConfig.width(context, 0.1)),
             ),
             border: InputBorder.none,
             fillColor: Colors.white),

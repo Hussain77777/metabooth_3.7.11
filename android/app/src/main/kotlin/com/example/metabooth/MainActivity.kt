@@ -1,4 +1,4 @@
-package com.example.metabooth
+package com.technologentvalley.metabooth
 
 import io.flutter.embedding.android.FlutterActivity
 
