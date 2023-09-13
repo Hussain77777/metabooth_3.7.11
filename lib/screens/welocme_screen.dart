@@ -47,7 +47,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   "assets/metabooth.png",
                 ),
               ),
-            /*  Padding(
+              /*  Padding(
                 padding:  EdgeInsets.only(top: SizeConfig.width(context, 0.06)),
                 child: Center(
                   child: MainTitleWidget(
@@ -61,7 +61,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     top: SizeConfig.height(context, 0.09),
                     left: SizeConfig.width(context, 0.06),
                     right: SizeConfig.width(context, 0.06)),
-                child: RichText(textAlign: TextAlign.center,
+                child: RichText(
+                  textAlign: TextAlign.center,
                   text: TextSpan(
                     text: '',
                     //   style: DefaultTextStyle.of(context).style,
@@ -89,11 +90,15 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(top: SizeConfig.height(context, 0.475)),
+                padding:
+                    EdgeInsets.only(top: SizeConfig.height(context, 0.475)),
                 child: Center(
                   child: ButtonWidget(
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>LoginOrRegisterScreen()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => LoginOrRegisterScreen()));
                     },
                     title: "Enter",
                     borderColor: Color(0xFFC8DE00),

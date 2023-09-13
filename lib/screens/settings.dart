@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_switch/flutter_switch.dart';
 import 'package:metabooth/constants/colors.dart';
 import 'package:metabooth/constants/size_config.dart';
 import 'package:metabooth/widgets/back_button_widget.dart';
@@ -11,6 +12,7 @@ class Settings extends StatefulWidget {
 }
 
 class _SettingsState extends State<Settings> {
+  bool isSwitched = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,7 +48,42 @@ class _SettingsState extends State<Settings> {
               SizedBox(
                 height: SizeConfig.height(context, 0.1),
               ),
-              titleWidget(context, "AUTO CONNECT"),
+              Center(
+                child: Row(mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding:  EdgeInsets.only(right: SizeConfig.width(context, 0.02)),
+                      child: Text(
+                        "AUTO CONNECT",
+                        style: TextStyle(
+                            color: Colors.white, fontSize: SizeConfig.width(context, 0.068)),
+                      ),
+                    ),
+                    FlutterSwitch(
+                        height: 25,
+                        width: SizeConfig.width(context, 0.12),
+                        activeText: "Avalaible",
+                        inactiveText: "Away",
+                        activeTextColor: Colors.black,
+                        inactiveTextColor: Colors.black,
+                        activeColor: GlobalColors.yellowColor,
+                        inactiveColor:
+                       Colors.blueGrey,
+                        value: isSwitched,
+                        onToggle: (value) async {
+                          print(value);
+
+
+                          setState(() {
+                            isSwitched=value;
+                            //   print("prefs.getBool('s')  ${prefs.getBool('s')}");
+
+                          });
+                        })
+                  ],
+                ),
+              ),
+
               DividerWidget(context),
               titleWidget(context, "MANUAL"),
               DividerWidget(context),
@@ -99,7 +136,7 @@ class _SettingsState extends State<Settings> {
       child: Text(
         title,
         style: TextStyle(
-            color: Colors.white, fontSize: SizeConfig.width(context, 0.08)),
+            color: Colors.white, fontSize: SizeConfig.width(context, 0.068)),
       ),
     );
   }
