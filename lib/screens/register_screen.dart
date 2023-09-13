@@ -44,7 +44,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               fit: BoxFit.cover),
         ),
         child: SingleChildScrollView(
-          physics: NeverScrollableScrollPhysics(),
+       //   physics: NeverScrollableScrollPhysics(),
           child: Form(
             key: formkey,
             child: Column(

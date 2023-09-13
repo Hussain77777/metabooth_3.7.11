@@ -63,7 +63,7 @@ class _LoginScreenState extends State<LoginScreen> {
               fit: BoxFit.cover),
         ),
         child: SingleChildScrollView(
-          physics: NeverScrollableScrollPhysics(),
+      //    physics: NeverScrollableScrollPhysics(),
           child: Form(key: formkey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

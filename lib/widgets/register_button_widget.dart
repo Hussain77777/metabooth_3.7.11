@@ -38,13 +38,13 @@ class RegisterButtonWidget extends StatelessWidget {
               title,
               style: TextStyle(
                   color:textColor,fontWeight: FontWeight.bold,
-                  fontSize: SizeConfig.width(context, 0.03)),
+                  fontSize: SizeConfig.width(context, 0.025)),
             ),
             Text(
               " $subtitle",
               style: TextStyle(
                   color:subtitleColor,fontWeight: FontWeight.bold,
-                  fontSize: SizeConfig.width(context, 0.04)),
+                  fontSize: SizeConfig.width(context, 0.035)),
             ),
           ],
         ),
