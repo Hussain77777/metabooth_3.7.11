@@ -37,12 +37,14 @@ class RegisterButtonWidget extends StatelessWidget {
             Text(
               title,
               style: TextStyle(
+                  fontFamily: "Inter",
                   color:textColor,fontWeight: FontWeight.bold,
                   fontSize: SizeConfig.width(context, 0.03)),
             ),
             Text(
               " $subtitle",
               style: TextStyle(
+                fontFamily: "Inter",
                   color:subtitleColor,fontWeight: FontWeight.bold,
                   fontSize: SizeConfig.width(context, 0.04)),
             ),

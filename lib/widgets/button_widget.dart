@@ -7,9 +7,10 @@ class ButtonWidget extends StatelessWidget {
   final Color innerColor;
   final Color textColor;
   final String title;
+  final FontWeight tiltFontWeight;
    const ButtonWidget({
      required this.onPressed,
-    super.key, required this.borderColor, required this.innerColor, required this.textColor, required this.title,
+    super.key, required this.borderColor, required this.innerColor, required this.textColor, required this.title, required this.tiltFontWeight,
   });
 
   @override
@@ -33,7 +34,9 @@ class ButtonWidget extends StatelessWidget {
             child: Text(
               title,
               style: TextStyle(
-                  color:textColor,fontWeight: FontWeight.bold,
+                  color:textColor,
+                  fontFamily: "Inter",
+                  fontWeight:tiltFontWeight,
                   fontSize: SizeConfig.width(context, 0.05)),
             )),
       ),

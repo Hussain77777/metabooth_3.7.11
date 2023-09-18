@@ -37,29 +37,29 @@ class _LoginOrRegisterScreenState extends State<LoginOrRegisterScreen> {
         child: SingleChildScrollView(
           physics: NeverScrollableScrollPhysics(),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
-                height: SizeConfig.height(context, 0.07),
-                //    color: Colors.red,
+                height: SizeConfig.height(context, 0.05),
+                // color: Colors.red,
                 margin: EdgeInsets.symmetric(
                   horizontal: SizeConfig.width(context, 0.2),
                   //     vertical: SizeConfig.height(context, 0.035)
                 ),
                 child: Image.asset(
-                  "assets/metabooth.png",
+                  "assets/metabooth.png",width: SizeConfig.width(context, 0.3),
                 ),
               ),
               Padding(
                 padding:  EdgeInsets.only(top: SizeConfig.width(context, 0.06)),
-                child: MainTitleWidget(
+                child: MainTitleWidget(titleFontWeight: FontWeight.w100,subTitleFontWeight: FontWeight.w300,
                     title: "Experience the Evolution of", subTitle: " light."),
               ),
               Padding(
                 padding: EdgeInsets.only(top: SizeConfig.height(context, 0.47)),
                 child: Center(
-                  child: ButtonWidget(
+                  child: ButtonWidget(tiltFontWeight: FontWeight.w400,
                     onPressed: () {
                       Navigator.push(context, MaterialPageRoute(builder: (context)=>LoginScreen()));
                     },

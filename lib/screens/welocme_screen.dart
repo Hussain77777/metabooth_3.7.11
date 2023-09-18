@@ -37,25 +37,17 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
-                height: SizeConfig.height(context, 0.07),
-                //    color: Colors.red,
+                height: SizeConfig.height(context, 0.05),
+               // color: Colors.red,
                 margin: EdgeInsets.symmetric(
                   horizontal: SizeConfig.width(context, 0.2),
                   //     vertical: SizeConfig.height(context, 0.035)
                 ),
                 child: Image.asset(
-                  "assets/metabooth.png",
+                  "assets/metabooth.png",width: SizeConfig.width(context, 0.3),
                 ),
               ),
-              /*  Padding(
-                padding:  EdgeInsets.only(top: SizeConfig.width(context, 0.06)),
-                child: Center(
-                  child: MainTitleWidget(
-                    title: "Welcome to ",
-                    subTitle: "Metabooth.",
-                  ),
-                ),
-              ),*/
+
               Padding(
                 padding: EdgeInsets.only(
                     top: SizeConfig.height(context, 0.09),
@@ -70,7 +62,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       TextSpan(
                         text: "Welcome to ",
                         style: TextStyle(
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.w900,
                           fontFamily: "Inter",
                           color: GlobalColors.whiteColor,
                           fontSize: SizeConfig.width(context, 0.11),
@@ -80,7 +72,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                         text: "Metabooth.",
                         style: TextStyle(
                           color: GlobalColors.yellowColor,
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.w300,
                           fontFamily: "Inter",
                           fontSize: SizeConfig.width(context, 0.11),
                         ),
@@ -100,7 +92,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                           MaterialPageRoute(
                               builder: (context) => LoginOrRegisterScreen()));
                     },
-                    title: "Enter",
+                    title: "Enter",tiltFontWeight: FontWeight.w400,
                     borderColor: Color(0xFFC8DE00),
                     innerColor: Color(0xFF000000),
                     textColor: Colors.white,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_switch/flutter_switch.dart';
 import 'package:metabooth/constants/colors.dart';
 import 'package:metabooth/constants/size_config.dart';
 import 'package:metabooth/screens/add_group.dart';
@@ -17,7 +18,7 @@ class _AllDevicesScreenState extends State<AllDevicesScreen> {
     Tabs(label: "Groups", isSelected: false),
   ];
   List<String> groupImageList = [
-    "assets/groups.png",
+    "assets/img.png",
   ];
   List<String> imageList = [
     "assets/small_square_metabooth.png",
@@ -42,6 +43,8 @@ class _AllDevicesScreenState extends State<AllDevicesScreen> {
 
   bool isAddDevices = false;
 
+  bool isSwitched = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,16 +68,17 @@ class _AllDevicesScreenState extends State<AllDevicesScreen> {
               Column(
                 children: [
                   Container(
-                    height: SizeConfig.height(context, 0.07),
-                    //    color: Colors.red,
+                    height: SizeConfig.height(context, 0.05),
+                    // color: Colors.red,
                     margin: EdgeInsets.symmetric(
                       horizontal: SizeConfig.width(context, 0.2),
                       //     vertical: SizeConfig.height(context, 0.035)
                     ),
                     child: Image.asset(
-                      "assets/metabooth.png",
+                      "assets/metabooth.png",width: SizeConfig.width(context, 0.3),
                     ),
                   ),
+
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -250,21 +254,21 @@ class _AllDevicesScreenState extends State<AllDevicesScreen> {
 
   Container devicesWidget(BuildContext context) {
     return Container(
-      //color: Colors.red,
+      // color: Colors.red,
       margin: EdgeInsets.only(
         left: SizeConfig.width(context, 0.06),
         right: SizeConfig.width(context, 0.06),
       ),
       height: SizeConfig.height(context, 0.7), //  color: Colors.red,
-      child: GridView.builder(
-          itemCount: imageList.length,
+      child: ListView.builder(
+          itemCount: 1,
           shrinkWrap: true,
           primary: true,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          /*       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
               childAspectRatio: 1.3,
               crossAxisSpacing: SizeConfig.width(context, 0.05),
-              mainAxisSpacing: SizeConfig.height(context, 0.03)),
+              mainAxisSpacing: SizeConfig.height(context, 0.03)),*/
           itemBuilder: (context, index) {
             return GestureDetector(
               onTap: () {
@@ -274,47 +278,63 @@ class _AllDevicesScreenState extends State<AllDevicesScreen> {
                         builder: (context) => ColorPickerScreen()));
               },
               child: Container(
-                //height: SizeConfig.height(context, 0.1),
+                margin: EdgeInsets.only(
+                  top: SizeConfig.height(context, 0.02),
+                  // left: SizeConfig.width(context, 0.1),
+                  // right: SizeConfig.width(context, 0.1),
+                ),
+                height: SizeConfig.height(context, 0.15),
+                width: SizeConfig.width(context, 0.8),
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                      image: AssetImage(imageList[index]), fit: BoxFit.fill),
+                      image: AssetImage("assets/img_1.png"), fit: BoxFit.fill),
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     ListTile(
+                      trailing: Container(
+                        margin: EdgeInsets.only(
+                          right: SizeConfig.width(context, 0.03),
+                          bottom: SizeConfig.height(context, 0.01),
+                        ),
+                        height: SizeConfig.height(context, 0.040),
+                        width: SizeConfig.width(context, 0.1),
+                        child: FlutterSwitch(
+                            height: 25,
+                            width: SizeConfig.width(context, 0.10),
+                            activeText: "Avalaible",
+                            inactiveText: "Away",
+                            activeTextColor: Colors.black,
+                            inactiveTextColor: Colors.black,
+                            activeColor: GlobalColors.yellowColor,
+                            inactiveColor: Colors.blueGrey,
+                            value: isSwitched,
+                            onToggle: (value) async {
+                              print(value);
+
+                              setState(() {
+                                isSwitched = value;
+                                //   print("prefs.getBool('s')  ${prefs.getBool('s')}");
+                              });
+                            }),
+                      ),
                       title: Text(
-                        nameList[index],
+                        "Metabooth",
                         style: TextStyle(
                             color: GlobalColors.whiteColor,
                             fontSize: SizeConfig.width(context, 0.04),
                             fontWeight: FontWeight.bold),
                       ),
                       subtitle: Text(
-                        statusList[index],
+                        "Online",
                         style: TextStyle(
                             color: GlobalColors.yellowColor,
                             fontSize: SizeConfig.width(context, 0.03),
                             fontWeight: FontWeight.bold),
                       ),
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Container(
-                            margin: EdgeInsets.only(
-                              right: SizeConfig.width(context, 0.03),
-                              bottom: SizeConfig.height(context, 0.01),
-                            ),
-                            height: SizeConfig.height(context, 0.040),
-                            width: SizeConfig.width(context, 0.1),
-                            //  color: Colors.red,
-                            child: Image.asset(
-                              statusImageList[index],
-                            ))
-                      ],
-                    )
                   ],
                 ),
               ),
@@ -325,20 +345,21 @@ class _AllDevicesScreenState extends State<AllDevicesScreen> {
 
   Container groupsWidget(BuildContext context) {
     return Container(
+      // color: Colors.red,
       margin: EdgeInsets.only(
         left: SizeConfig.width(context, 0.06),
         right: SizeConfig.width(context, 0.06),
       ),
       height: SizeConfig.height(context, 0.7), //  color: Colors.red,
-      child: GridView.builder(
-          itemCount: groupImageList.length,
+      child: ListView.builder(
+          itemCount: 1,
           shrinkWrap: true,
           primary: true,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          /*       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
-              childAspectRatio: 1.1,
-              crossAxisSpacing: SizeConfig.width(context, 0.12),
-              mainAxisSpacing: SizeConfig.height(context, 0.03)),
+              childAspectRatio: 1.3,
+              crossAxisSpacing: SizeConfig.width(context, 0.05),
+              mainAxisSpacing: SizeConfig.height(context, 0.03)),*/
           itemBuilder: (context, index) {
             return GestureDetector(
               onTap: () {
@@ -346,48 +367,65 @@ class _AllDevicesScreenState extends State<AllDevicesScreen> {
                     context,
                     MaterialPageRoute(
                         builder: (context) => ColorPickerScreen()));
-              },     child: Container(
-                //height: SizeConfig.height(context, 0.1),
+              },
+              child: Container(
+                margin: EdgeInsets.only(
+                  top: SizeConfig.height(context, 0.02),
+                  // left: SizeConfig.width(context, 0.1),
+                  // right: SizeConfig.width(context, 0.1),
+                ),
+                height: SizeConfig.height(context, 0.15),
+                width: SizeConfig.width(context, 0.8),
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                      image: AssetImage(groupImageList[index]), fit: BoxFit.fill),
+                      image: AssetImage("assets/img.png"), fit: BoxFit.fill),
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     ListTile(
+                      trailing: Container(
+                        margin: EdgeInsets.only(
+                          right: SizeConfig.width(context, 0.03),
+                          bottom: SizeConfig.height(context, 0.01),
+                        ),
+                        height: SizeConfig.height(context, 0.040),
+                        width: SizeConfig.width(context, 0.1),
+                        child: FlutterSwitch(
+                            height: 25,
+                            width: SizeConfig.width(context, 0.10),
+                            activeText: "Avalaible",
+                            inactiveText: "Away",
+                            activeTextColor: Colors.black,
+                            inactiveTextColor: Colors.black,
+                            activeColor: GlobalColors.yellowColor,
+                            inactiveColor: Colors.blueGrey,
+                            value: isSwitched,
+                            onToggle: (value) async {
+                              print(value);
+
+                              setState(() {
+                                isSwitched = value;
+                                //   print("prefs.getBool('s')  ${prefs.getBool('s')}");
+                              });
+                            }),
+                      ),
                       title: Text(
-                        nameList[index],
+                        "Events Lights",
                         style: TextStyle(
                             color: GlobalColors.whiteColor,
                             fontSize: SizeConfig.width(context, 0.04),
                             fontWeight: FontWeight.bold),
                       ),
                       subtitle: Text(
-                        statusList[index],
+                        "Online",
                         style: TextStyle(
                             color: GlobalColors.yellowColor,
                             fontSize: SizeConfig.width(context, 0.03),
                             fontWeight: FontWeight.bold),
                       ),
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Container(
-                            margin: EdgeInsets.only(
-                              right: SizeConfig.width(context, 0.03),
-                              bottom: SizeConfig.height(context, 0.01),
-                            ),
-                            height: SizeConfig.height(context, 0.040),
-                            width: SizeConfig.width(context, 0.1),
-                            //  color: Colors.red,
-                            child: Image.asset(
-                              statusImageList[index],
-                            ))
-                      ],
-                    )
                   ],
                 ),
               ),

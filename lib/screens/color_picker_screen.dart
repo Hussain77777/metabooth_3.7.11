@@ -71,17 +71,6 @@ class _ColorPickerScreenState extends State<ColorPickerScreen> {
         child: SingleChildScrollView(
             child: Column(
           children: [
-            Container(
-              height: SizeConfig.height(context, 0.07),
-              //    color: Colors.red,
-              margin: EdgeInsets.symmetric(
-                horizontal: SizeConfig.width(context, 0.2),
-                //     vertical: SizeConfig.height(context, 0.035)
-              ),
-              child: Image.asset(
-                "assets/metabooth.png",
-              ),
-            ),
             Padding(
               padding: EdgeInsets.only(
                 left: SizeConfig.width(context, 0.06),
@@ -115,26 +104,23 @@ class _ColorPickerScreenState extends State<ColorPickerScreen> {
                       ],
                     ),
                   ),
-                  Column(
-                    children: [
-                      Text(
-                        "MetaTube",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: SizeConfig.width(context, 0.035)),
-                      ),
-                      Text(
-                        "Online",
-                        style: TextStyle(
-                            color: GlobalColors.yellowColor,
-                            fontSize: SizeConfig.width(context, 0.035)),
-                      ),
-                    ],
-                  ),
+
                   IconsWidget(context)
                 ],
               ),
             ),
+            Container(
+              height: SizeConfig.height(context, 0.05),
+              // color: Colors.red,
+              margin: EdgeInsets.symmetric(
+                horizontal: SizeConfig.width(context, 0.2),
+                //     vertical: SizeConfig.height(context, 0.035)
+              ),
+              child: Image.asset(
+                "assets/metabooth.png",width: SizeConfig.width(context, 0.3),
+              ),
+            ),
+
             _page == 3 ? BoxWidget() : ColorWidget(context),
           ],
         )),
@@ -168,29 +154,7 @@ class _ColorPickerScreenState extends State<ColorPickerScreen> {
       padding: EdgeInsets.all(SizeConfig.width(context, 0.00)),
       child: Row(
         children: [
-          InkWell(
-            onTap: () {},
-            child: Container(
-              height: SizeConfig.height(context, 0.04),
-              width: SizeConfig.width(context, 0.08),
-              decoration: BoxDecoration(
-                color: GlobalColors.yellowColor,
-                borderRadius:
-                    BorderRadius.circular(SizeConfig.width(context, 0.1)),
-                /* border: Border.all(
-                    color:
-                    GlobalColors.yellowColor),*/
-                //color: Colors.red,
-              ),
-              child: Center(
-                child: Icon(
-                  Icons.highlight_off,
-                  color: Colors.white,
-                  size: SizeConfig.width(context, 0.05),
-                ),
-              ),
-            ),
-          ),
+
           Container(
             margin: EdgeInsets.only(left: SizeConfig.width(context, 0.03)),
             height: SizeConfig.height(context, 0.04),
@@ -229,7 +193,7 @@ class BoxWidget extends StatelessWidget {
       child: GridView.builder(
           itemCount: 10,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 4,
+              crossAxisCount: 3,childAspectRatio: 1.1,
               mainAxisSpacing: SizeConfig.height(context, 0.03),
               crossAxisSpacing: SizeConfig.width(context, 0.03)),
           itemBuilder: (context, index) {
@@ -238,7 +202,24 @@ class BoxWidget extends StatelessWidget {
                 image: DecorationImage(
                   image: AssetImage("assets/box.png"),
                 ),
+
+              ),child: ListTile(
+
+              title: Text(
+                "MetaBooth Dj",
+                style: TextStyle(
+                    color: GlobalColors.whiteColor,
+                    fontSize: SizeConfig.width(context, 0.028),
+                    fontWeight: FontWeight.bold),
               ),
+              subtitle: Text(
+                "Online",
+                style: TextStyle(
+                    color: GlobalColors.yellowColor,
+                    fontSize: SizeConfig.width(context, 0.025),
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
             );
           }),
     );

@@ -31,17 +31,19 @@ class _AddGroupState extends State<AddGroup> {
         child: SingleChildScrollView(child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-          Container(
-            height: SizeConfig.height(context, 0.07),
-            //    color: Colors.red,
-            margin: EdgeInsets.symmetric(
-              horizontal: SizeConfig.width(context, 0.2),
-              //     vertical: SizeConfig.height(context, 0.035)
+            Center(
+              child: Container(
+                height: SizeConfig.height(context, 0.05),
+                // color: Colors.red,
+                margin: EdgeInsets.symmetric(
+                  horizontal: SizeConfig.width(context, 0.2),
+                  //     vertical: SizeConfig.height(context, 0.035)
+                ),
+                child: Image.asset(
+                  "assets/metabooth.png",width: SizeConfig.width(context, 0.3),
+                ),
+              ),
             ),
-            child: Image.asset(
-              "assets/metabooth.png",
-            ),
-          ),
           BackButtonWidget(),
             GestureDetector(
               onTap: () {

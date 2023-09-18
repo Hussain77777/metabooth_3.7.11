@@ -43,6 +43,8 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   curved_navigation_bar: ^1.0.3
+  #google_fonts: ^6.0.0
+  #http: ^1.1.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -85,8 +87,16 @@ flutter:
   fonts:
     - family: Inter;
       fonts:
-        - asset: fonts/inter/Inter-Regular.ttf
-        - weight: 400
+        - asset: font/inter/Inter-Regular.ttf
+          weight: 900
+        - asset: font/inter/Inter-Bold.ttf
+          weight: 200
+        - asset: font/inter/Inter-SemiBold.ttf
+          weight: 300
+        - asset: font/inter/Inter-Medium.ttf
+          weight: 400
+
+
 
   #     fonts:
   #       - asset: fonts/Schyler-Regular.ttf

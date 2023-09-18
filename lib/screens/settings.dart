@@ -33,15 +33,17 @@ class _SettingsState extends State<Settings> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                height: SizeConfig.height(context, 0.07),
-                //    color: Colors.red,
-                margin: EdgeInsets.symmetric(
-                  horizontal: SizeConfig.width(context, 0.2),
-                  //     vertical: SizeConfig.height(context, 0.035)
-                ),
-                child: Image.asset(
-                  "assets/metabooth.png",
+              Center(
+                child: Container(
+                  height: SizeConfig.height(context, 0.05),
+                  // color: Colors.red,
+                  margin: EdgeInsets.symmetric(
+                    horizontal: SizeConfig.width(context, 0.2),
+                    //     vertical: SizeConfig.height(context, 0.035)
+                  ),
+                  child: Image.asset(
+                    "assets/metabooth.png",width: SizeConfig.width(context, 0.3),
+                  ),
                 ),
               ),
               BackButtonWidget(),
