@@ -84,7 +84,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 BackButtonWidget(),
                 MainTitleWidget(
-                    title: "Experience the Evolution of", subTitle: " light."),
+                    title: "Experience the Evolution of", titleFontWeight: FontWeight.w500,subTitle: " light.",subTitleFontWeight: FontWeight.w700),
                 Padding(
                   padding: EdgeInsets.only(
                       bottom: SizeConfig.height(context, 0.015),
@@ -169,9 +169,9 @@ class _LoginScreenState extends State<LoginScreen> {
                             child: loading ==false
                                 ? Text(
                                     "Login",
-                                    style: TextStyle(
+                                    style: TextStyle(fontFamily: "Inter",
                                         color: Colors.black,
-                                        fontWeight: FontWeight.bold,
+                                        fontWeight: FontWeight.w600,
                                         fontSize:
                                             SizeConfig.width(context, 0.05)),
                                   )
@@ -189,7 +189,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       subtitle: "Click Here",
                       subtitleColor: Color(0xFFC8DE00),
                       onPressed: () {},
-                      title: "Forgot Password?",
+                      title: "Forgot Password? ",
                       borderColor: Color(0xFFC8DE00),
                       innerColor: Color(0xFF000000),
                       textColor: Color(0xFF9C9C9C),

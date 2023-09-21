@@ -54,9 +54,9 @@ class _ScanningDeviceState extends State<ScanningDevice> {
                       top: SizeConfig.height(context, 0.02)),
                   child: Text(
                     "Scanning...",
-                    style: TextStyle(
+                    style: TextStyle(fontFamily: "Inter",
                         color: GlobalColors.whiteColor,
-                        fontWeight: FontWeight.bold,
+                        fontWeight: FontWeight.w500,
                         fontSize: SizeConfig.width(context, 0.05)),
                   ),
                 ),
@@ -69,8 +69,9 @@ class _ScanningDeviceState extends State<ScanningDevice> {
                   child: Text(
                     "Make sure the device is plugged in and near your phone or on the same network as your phone.",
                     textAlign: TextAlign.center,
-                    style: TextStyle(
+                    style: TextStyle(fontFamily: "Inter",
                       color: GlobalColors.whiteColor,
+                      fontWeight: FontWeight.normal,
                       fontSize: SizeConfig.width(context, 0.03),
                     ),
                   ),
@@ -107,8 +108,8 @@ class _ScanningDeviceState extends State<ScanningDevice> {
                             height: SizeConfig.height(context, 0.040),
                             width: SizeConfig.width(context, 0.1),
                             child: FlutterSwitch(
-                                height: 25,
-                                width: SizeConfig.width(context, 0.10),
+                                height: 20,
+                                width: SizeConfig.width(context, 0.15),
                                 activeText: "Avalaible",
                                 inactiveText: "Away",
                                 activeTextColor: Colors.black,
@@ -129,18 +130,19 @@ class _ScanningDeviceState extends State<ScanningDevice> {
                                 }),
                           ),
                           title: Text(
-                            "Metabooth",
+                            "Metabooth DJ",
                             style: TextStyle(
-                                color: GlobalColors.whiteColor,
-                                fontSize: SizeConfig.width(context, 0.04),
-                                fontWeight: FontWeight.bold),
+                                color: GlobalColors.whiteColor,fontFamily: "Inter",
+                                fontSize: SizeConfig.width(context, 0.035),
+                                fontWeight: FontWeight.w700),
                           ),
                           subtitle: Text(
                             "Online",
-                            style: TextStyle(
+                            style: TextStyle(fontFamily: "Inter",
+
                                 color: GlobalColors.yellowColor,
-                                fontSize: SizeConfig.width(context, 0.03),
-                                fontWeight: FontWeight.bold),
+                                fontSize: SizeConfig.width(context, 0.025),
+                                fontWeight: FontWeight.w500),
                           ),
                         ),
 

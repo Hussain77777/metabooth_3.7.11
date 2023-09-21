@@ -66,9 +66,9 @@ class _AddDeviceScreenState extends State<AddDeviceScreen> {
             Text(
               "Add Your devices",
               style: TextStyle(
-                  color: GlobalColors.whiteColor,
+                  color: GlobalColors.whiteColor,fontFamily: "Inter",
                   fontSize: SizeConfig.width(context, 0.07),
-                  fontWeight: FontWeight.bold),
+                  fontWeight: FontWeight.normal),
             )
           ],
         )),

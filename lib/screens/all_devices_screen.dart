@@ -75,10 +75,10 @@ class _AllDevicesScreenState extends State<AllDevicesScreen> {
                       //     vertical: SizeConfig.height(context, 0.035)
                     ),
                     child: Image.asset(
-                      "assets/metabooth.png",width: SizeConfig.width(context, 0.3),
+                      "assets/metabooth.png",
+                      width: SizeConfig.width(context, 0.3),
                     ),
                   ),
-
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -142,7 +142,7 @@ class _AllDevicesScreenState extends State<AllDevicesScreen> {
                                               TextSpan(
                                                 text: "Add",
                                                 style: TextStyle(
-                                                  // fontWeight: FontWeight.bold,
+                                                  fontWeight: FontWeight.w700,
                                                   fontFamily: "Inter",
                                                   color:
                                                       GlobalColors.whiteColor,
@@ -153,10 +153,12 @@ class _AllDevicesScreenState extends State<AllDevicesScreen> {
                                               TextSpan(
                                                 text: " Device",
                                                 style: TextStyle(
+                                                  fontWeight: FontWeight.w700,
+                                                  fontFamily: "Inter",
                                                   color:
                                                       GlobalColors.yellowColor,
                                                   //   fontWeight: FontWeight.bold,
-                                                  fontFamily: "Inter",
+
                                                   fontSize: SizeConfig.width(
                                                       context, 0.035),
                                                 ),
@@ -203,7 +205,7 @@ class _AllDevicesScreenState extends State<AllDevicesScreen> {
                                                 TextSpan(
                                                   text: "New",
                                                   style: TextStyle(
-                                                    // fontWeight: FontWeight.bold,
+                                                    fontWeight: FontWeight.w700,
                                                     fontFamily: "Inter",
                                                     color:
                                                         GlobalColors.whiteColor,
@@ -216,7 +218,7 @@ class _AllDevicesScreenState extends State<AllDevicesScreen> {
                                                   style: TextStyle(
                                                     color: GlobalColors
                                                         .yellowColor,
-                                                    //   fontWeight: FontWeight.bold,
+                                                    fontWeight: FontWeight.w700,
                                                     fontFamily: "Inter",
                                                     fontSize: SizeConfig.width(
                                                         context, 0.035),
@@ -302,8 +304,8 @@ class _AllDevicesScreenState extends State<AllDevicesScreen> {
                         height: SizeConfig.height(context, 0.040),
                         width: SizeConfig.width(context, 0.1),
                         child: FlutterSwitch(
-                            height: 25,
-                            width: SizeConfig.width(context, 0.10),
+                            height: 20,
+                            width: SizeConfig.width(context, 0.15),
                             activeText: "Avalaible",
                             inactiveText: "Away",
                             activeTextColor: Colors.black,
@@ -324,15 +326,16 @@ class _AllDevicesScreenState extends State<AllDevicesScreen> {
                         "Metabooth",
                         style: TextStyle(
                             color: GlobalColors.whiteColor,
-                            fontSize: SizeConfig.width(context, 0.04),
+                            fontSize: SizeConfig.width(context, 0.035),
                             fontWeight: FontWeight.bold),
                       ),
                       subtitle: Text(
                         "Online",
                         style: TextStyle(
+                            fontFamily: "Inter",
                             color: GlobalColors.yellowColor,
                             fontSize: SizeConfig.width(context, 0.03),
-                            fontWeight: FontWeight.bold),
+                            fontWeight: FontWeight.w500),
                       ),
                     ),
                   ],
@@ -393,8 +396,8 @@ class _AllDevicesScreenState extends State<AllDevicesScreen> {
                         height: SizeConfig.height(context, 0.040),
                         width: SizeConfig.width(context, 0.1),
                         child: FlutterSwitch(
-                            height: 25,
-                            width: SizeConfig.width(context, 0.10),
+                            height: 20,
+                            width: SizeConfig.width(context, 0.15),
                             activeText: "Avalaible",
                             inactiveText: "Away",
                             activeTextColor: Colors.black,
@@ -414,16 +417,18 @@ class _AllDevicesScreenState extends State<AllDevicesScreen> {
                       title: Text(
                         "Events Lights",
                         style: TextStyle(
+                            fontFamily: "Inter",
                             color: GlobalColors.whiteColor,
-                            fontSize: SizeConfig.width(context, 0.04),
-                            fontWeight: FontWeight.bold),
+                            fontSize: SizeConfig.width(context, 0.03),
+                            fontWeight: FontWeight.w700),
                       ),
                       subtitle: Text(
                         "Online",
                         style: TextStyle(
+                            fontFamily: "Inter",
                             color: GlobalColors.yellowColor,
                             fontSize: SizeConfig.width(context, 0.03),
-                            fontWeight: FontWeight.bold),
+                            fontWeight: FontWeight.w500),
                       ),
                     ),
                   ],
@@ -497,23 +502,32 @@ class _AllDevicesScreenState extends State<AllDevicesScreen> {
             });
           },
           child: Container(
-              margin: EdgeInsets.only(
-                top: SizeConfig.height(context, 0.03),
-                left: SizeConfig.width(context, 0.06),
-                right: SizeConfig.width(context, 0.01),
+            margin: EdgeInsets.only(
+              top: SizeConfig.height(context, 0.03),
+              left: SizeConfig.width(context, 0.06),
+              right: SizeConfig.width(context, 0.01),
+            ),
+            padding: EdgeInsets.only(
+              bottom: SizeConfig.height(context, 0.01),
+            ),
+            decoration: BoxDecoration(
+              border: Border(
+                bottom: tabList[index].isSelected ?? false
+                    ? BorderSide(color: GlobalColors.yellowColor)
+                    : BorderSide(
+                        color: Colors.transparent,
+                      ),
               ),
-              padding: EdgeInsets.only(
-                bottom: SizeConfig.height(context, 0.01),
+            ),
+            child: Text(
+              tabList[index].label,
+              style: TextStyle(
+                fontFamily: "Inter",
+                fontSize: SizeConfig.width(context, 0.04),
+                color: Colors.white70,
               ),
-              decoration: BoxDecoration(
-                  border: Border(
-                      bottom: tabList[index].isSelected ?? false
-                          ? BorderSide(color: GlobalColors.yellowColor)
-                          : BorderSide(color: Colors.transparent))),
-              child: Text(tabList[index].label,
-                  style: TextStyle(
-                      fontSize: SizeConfig.width(context, 0.04),
-                      color: GlobalColors.whiteColor))),
+            ),
+          ),
         );
       }),
     );

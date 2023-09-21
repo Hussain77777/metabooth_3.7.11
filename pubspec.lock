@@ -65,6 +65,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.3"
+  dooz_color_picker:
+    dependency: "direct main"
+    description:
+      name: dooz_color_picker
+      sha256: dcab5c209ad533eec229de56a90e767938dcafb6cc9e5649577cf978f8d9806a
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.0"
   email_validator:
     dependency: "direct main"
     description:
@@ -190,6 +198,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_colorpicker:
+    dependency: "direct main"
+    description:
+      name: flutter_colorpicker
+      sha256: "458a6ed8ea480eb16ff892aedb4b7092b2804affd7e046591fb03127e8d8ef8b"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.3"
   flutter_hsvcolor_picker:
     dependency: "direct main"
     description:
@@ -199,13 +215,13 @@ packages:
     source: hosted
     version: "1.5.0"
   flutter_lints:
-    dependency: "direct dev"
+    dependency: transitive
     description:
       name: flutter_lints
-      sha256: a25a15ebbdfc33ab1cd26c63a6ee519df92338a9c10f122adda92938253bef04
+      sha256: b543301ad291598523947dc534aaddc5aaad597b709d2426d3a0e0d44c5cb493
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.3"
+    version: "1.0.4"
   flutter_switch:
     dependency: "direct main"
     description:
@@ -244,10 +260,10 @@ packages:
     dependency: transitive
     description:
       name: lints
-      sha256: "5e4a9cd06d447758280a8ac2405101e0e2094d2a1dbdd3756aec3fe7775ba593"
+      sha256: a2c3d198cb5ea2e179926622d433331d8b58374ab8f29cdda6e863bd62fd369c
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.1"
+    version: "1.0.1"
   matcher:
     dependency: transitive
     description:

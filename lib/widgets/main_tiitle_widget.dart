@@ -57,11 +57,12 @@ class SubTitleWidget extends StatelessWidget {
   SubTitleWidget({
     super.key,
     this.title,
-    this.subTitle,
+    this.subTitle, this.subTitleFontWeight, this.titleFontWeight,
   });
 
   final String? title;
-  final String? subTitle;
+  final String? subTitle;  final FontWeight? subTitleFontWeight;
+  final FontWeight? titleFontWeight;
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +79,7 @@ class SubTitleWidget extends StatelessWidget {
             TextSpan(
               text: title,
               style: TextStyle(
-                // fontWeight: FontWeight.bold,
+               fontWeight: titleFontWeight,
                 fontFamily: "Inter",
                 color: GlobalColors.whiteColor,
                 fontSize: SizeConfig.width(context, 0.035),
@@ -88,7 +89,7 @@ class SubTitleWidget extends StatelessWidget {
               text: subTitle,
               style: TextStyle(
                 color: GlobalColors.yellowColor,
-                //   fontWeight: FontWeight.bold,
+                 fontWeight: subTitleFontWeight,
                 fontFamily: "Inter",
                 fontSize: SizeConfig.width(context, 0.035),
               ),

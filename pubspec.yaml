@@ -43,6 +43,8 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   curved_navigation_bar: ^1.0.3
+  dooz_color_picker: ^0.1.0
+  flutter_colorpicker: ^1.0.3
   #google_fonts: ^6.0.0
   #http: ^1.1.0
 dev_dependencies:
@@ -54,7 +56,7 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^2.0.0
+  #flutter_lints: ^2.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -71,6 +73,9 @@ flutter:
   assets:
     - assets/
     - assets/add_icon.png
+    - assets/yellow_star.png
+    - assets/yellow_bulb.png
+
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -88,7 +93,7 @@ flutter:
     - family: Inter;
       fonts:
         - asset: font/inter/Inter-Regular.ttf
-          weight: 900
+          weight: 300
         - asset: font/inter/Inter-Bold.ttf
           weight: 200
         - asset: font/inter/Inter-SemiBold.ttf

@@ -44,7 +44,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               fit: BoxFit.cover),
         ),
         child: SingleChildScrollView(
-         // physics: NeverScrollableScrollPhysics(),
+          // physics: NeverScrollableScrollPhysics(),
           child: Form(
             key: formkey,
             child: Column(
@@ -60,14 +60,20 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       //     vertical: SizeConfig.height(context, 0.035)
                     ),
                     child: Image.asset(
-                      "assets/metabooth.png",width: SizeConfig.width(context, 0.3),
+                      "assets/metabooth.png",
+                      width: SizeConfig.width(context, 0.3),
                     ),
                   ),
                 ),
                 BackButtonWidget(),
                 MainTitleWidget(
-                    title: "Experience the Evolution of", subTitle: " light."),
+                    title: "Experience the Evolution of",
+                    titleFontWeight: FontWeight.w500,
+                    subTitle: " light.",
+                    subTitleFontWeight: FontWeight.w700),
                 SubTitleWidget(
+                    subTitleFontWeight: FontWeight.w300,
+                    titleFontWeight: FontWeight.w300,
                     title: "Enter your Account details below to",
                     subTitle: " register."),
                 Padding(
@@ -177,9 +183,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             child: loading == false
                                 ? Text(
                                     "Register",
-                                    style: TextStyle(
+                                    style: TextStyle(fontFamily: "Inter",
                                         color: Colors.black,
-                                        fontWeight: FontWeight.bold,
+                                        fontWeight: FontWeight.w600,
                                         fontSize:
                                             SizeConfig.width(context, 0.05)),
                                   )

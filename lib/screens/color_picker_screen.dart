@@ -1,6 +1,7 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hsvcolor_picker/flutter_hsvcolor_picker.dart';
+import 'package:flutter_colorpicker/flutter_colorpicker.dart';
+
 import 'package:metabooth/constants/colors.dart';
 import 'package:metabooth/constants/size_config.dart';
 import 'package:metabooth/screens/settings.dart';
@@ -16,6 +17,20 @@ class _ColorPickerScreenState extends State<ColorPickerScreen> {
   int _page = 2;
   GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
   final _colorNotifier = ValueNotifier<Color>(Colors.green);
+  List<Tabs> tabList = [
+    Tabs(
+      label: "Color Picker",
+      isSelected: true,
+    ),
+    Tabs(
+      label: "White Balance",
+      isSelected: false,
+    ),
+    Tabs(
+      label: "favorites",
+      isSelected: false,
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -23,24 +38,45 @@ class _ColorPickerScreenState extends State<ColorPickerScreen> {
       bottomNavigationBar: CurvedNavigationBar(
         key: _bottomNavigationKey,
         index: 2,
-        height: 60.0,
+        height: 75.0,
         items: <Widget>[
-          Icon(
-            Icons.home,
-            size: 30,
-            color: _page == 0 ? Colors.black : Colors.white,
+          Padding(
+            padding: EdgeInsets.only(top: SizeConfig.height(context, 0.02)),
+            child: Image.asset("assets/home.png",
+                width: SizeConfig.width(context, 0.08)),
           ),
-          Icon(Icons.message,
-              size: 30, color: _page == 1 ? Colors.black : Colors.white),
-          Icon(Icons.compare_arrows,
-              size: 30, color: _page == 2 ? Colors.black : Colors.white),
-          Icon(Icons.person,
-              size: 30, color: _page == 3 ? Colors.black : Colors.white),
-          Icon(Icons.settings,
-              size: 30, color: _page == 4 ? Colors.black : Colors.white),
+          Padding(
+            padding: EdgeInsets.only(top: SizeConfig.height(context, 0.02)),
+            child: _page == 1
+                ? Image.asset("assets/yellow_bulb.png",
+                    width: SizeConfig.width(context, 0.08))
+                : Image.asset("assets/bulb.png",
+                    width: SizeConfig.width(context, 0.08)),
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: SizeConfig.height(context, 0.02)),
+            child: Image.asset("assets/small_logo.png",
+                width: SizeConfig.width(context, 0.08)),
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: SizeConfig.height(context, 0.02)),
+            child: _page == 3
+                ? Image.asset("assets/yellow_star.png",
+                    width: SizeConfig.width(context, 0.08))
+                : Image.asset("assets/star.png",
+                    width: SizeConfig.width(context, 0.08)),
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: SizeConfig.height(context, 0.02)),
+            child: _page == 4
+                ? Image.asset("assets/yellow_song.png",
+                    width: SizeConfig.width(context, 0.08))
+                : Image.asset("assets/song.png",
+                    width: SizeConfig.width(context, 0.08)),
+          ),
         ],
         color: Color(0xFF161616),
-        buttonBackgroundColor: Colors.white,
+        buttonBackgroundColor: Colors.black,
         backgroundColor: Colors.black,
         animationCurve: Curves.easeInOut,
         animationDuration: Duration(milliseconds: 600),
@@ -49,9 +85,10 @@ class _ColorPickerScreenState extends State<ColorPickerScreen> {
           setState(() {
             _page = index;
           });
-          if(index==4){
-            Navigator.push(context,MaterialPageRoute(builder: (context)=>Settings()));
-          }
+          /*    if (index == 4) {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => Settings()));
+          }*/
         },
         letIndexChange: (index) => true,
       ),
@@ -104,7 +141,6 @@ class _ColorPickerScreenState extends State<ColorPickerScreen> {
                       ],
                     ),
                   ),
-
                   IconsWidget(context)
                 ],
               ),
@@ -117,34 +153,88 @@ class _ColorPickerScreenState extends State<ColorPickerScreen> {
                 //     vertical: SizeConfig.height(context, 0.035)
               ),
               child: Image.asset(
-                "assets/metabooth.png",width: SizeConfig.width(context, 0.3),
+                "assets/metabooth.png",
+                width: SizeConfig.width(context, 0.3),
               ),
             ),
-
-            _page == 3 ? BoxWidget() : ColorWidget(context),
+            _page == 3 || _page == 4 ? BoxWidget() : ColorWidget(context),
           ],
         )),
       ),
     );
   }
 
-  Padding ColorWidget(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(
-        left: SizeConfig.width(context, 0.06),
-        top: SizeConfig.height(context, 0.02),
-        right: SizeConfig.width(context, 0.04),
-      ),
-      child: ValueListenableBuilder<Color>(
-        valueListenable: _colorNotifier,
-        builder: (_, color, __) {
-          return ColorPicker(
-            initialPicker: Picker.paletteSaturation,
-            pickerOrientation: PickerOrientation.inherit,
-            color: color,
-            onChanged: (value) => color = value,
-          );
-        },
+  Widget ColorWidget(BuildContext context) {
+    return Container(
+      height: SizeConfig.height(context, 0.70),
+      child: Card(
+        elevation: 10,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(
+              SizeConfig.width(context, 0.2),
+            ),
+            topRight: Radius.circular(
+              SizeConfig.width(context, 0.2),
+            ),
+          ),
+        ),
+/*      padding: EdgeInsets.only(
+          left: SizeConfig.width(context, 0.06),
+          top: SizeConfig.height(context, 0.02),
+          right: SizeConfig.width(context, 0.04),
+        ),*/
+        child: Column(
+          children: [
+            Padding(
+              padding: EdgeInsets.only(
+                  left: SizeConfig.width(
+                    context,
+                    0.05,
+                  ),
+                  right: SizeConfig.width(
+                    context,
+                    0.05,
+                  ),
+                  top: SizeConfig.height(context, 0.05)),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: List.generate(3, (index) {
+                  return InkWell(onTap: (){
+                    setState(() {
+                      tabList.forEach((element) {element.isSelected=false;});
+                      tabList[index].isSelected=true;
+                    });
+
+                    },
+                    child: Container(
+                      height: SizeConfig.height(context, 0.07),
+                      width: SizeConfig.width(context, 0.28),
+                      decoration: BoxDecoration(
+                        color: (tabList[index].isSelected)
+                            ? Colors.black
+                            : Colors.white,
+                        border: Border.all(color: Color(0xFF8A8A8A), width: 2),
+                        borderRadius: BorderRadius.circular(
+                            SizeConfig.width(context, 0.04)),
+                      ),
+                      child: Center(
+                          child: Text(
+                        tabList[index].label ?? "",
+                        style: TextStyle(color:(tabList[index].isSelected)?GlobalColors.yellowColor: Color(0xFF8A8A8A),),
+                      )),
+                    ),
+                  );
+                }),
+              ),
+            ),
+            ColorPicker(
+              pickerColor: Color(0xff443a49),
+              paletteType: PaletteType.hueWheel,
+              onColorChanged: (Color value) {},
+            )
+          ],
+        ),
       ),
     );
   }
@@ -154,7 +244,6 @@ class _ColorPickerScreenState extends State<ColorPickerScreen> {
       padding: EdgeInsets.all(SizeConfig.width(context, 0.00)),
       child: Row(
         children: [
-
           Container(
             margin: EdgeInsets.only(left: SizeConfig.width(context, 0.03)),
             height: SizeConfig.height(context, 0.04),
@@ -193,7 +282,8 @@ class BoxWidget extends StatelessWidget {
       child: GridView.builder(
           itemCount: 10,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3,childAspectRatio: 1.1,
+              crossAxisCount: 3,
+              childAspectRatio: 1.0,
               mainAxisSpacing: SizeConfig.height(context, 0.03),
               crossAxisSpacing: SizeConfig.width(context, 0.03)),
           itemBuilder: (context, index) {
@@ -202,26 +292,36 @@ class BoxWidget extends StatelessWidget {
                 image: DecorationImage(
                   image: AssetImage("assets/box.png"),
                 ),
-
-              ),child: ListTile(
-
-              title: Text(
-                "MetaBooth Dj",
-                style: TextStyle(
-                    color: GlobalColors.whiteColor,
-                    fontSize: SizeConfig.width(context, 0.028),
-                    fontWeight: FontWeight.bold),
               ),
-              subtitle: Text(
-                "Online",
-                style: TextStyle(
-                    color: GlobalColors.yellowColor,
-                    fontSize: SizeConfig.width(context, 0.025),
-                    fontWeight: FontWeight.bold),
+              child: Center(
+                child: ListTile(
+                  title: Text(
+                    "MetaBooth Dj",
+                    style: TextStyle(
+                        fontFamily: "Inter",
+                        color: GlobalColors.whiteColor,
+                        fontSize: SizeConfig.width(context, 0.028),
+                        fontWeight: FontWeight.w700),
+                  ),
+                  subtitle: Text(
+                    "Online",
+                    style: TextStyle(
+                        fontFamily: "Inter",
+                        color: GlobalColors.yellowColor,
+                        fontSize: SizeConfig.width(context, 0.025),
+                        fontWeight: FontWeight.w500),
+                  ),
+                ),
               ),
-            ),
             );
           }),
     );
   }
+}
+
+class Tabs {
+  final String? label;
+  bool isSelected = false;
+
+  Tabs({this.label, required this.isSelected});
 }

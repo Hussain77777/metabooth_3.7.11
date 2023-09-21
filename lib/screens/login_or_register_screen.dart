@@ -53,13 +53,13 @@ class _LoginOrRegisterScreenState extends State<LoginOrRegisterScreen> {
               ),
               Padding(
                 padding:  EdgeInsets.only(top: SizeConfig.width(context, 0.06)),
-                child: MainTitleWidget(titleFontWeight: FontWeight.w100,subTitleFontWeight: FontWeight.w300,
+                child: MainTitleWidget(titleFontWeight: FontWeight.w500,subTitleFontWeight: FontWeight.w700,
                     title: "Experience the Evolution of", subTitle: " light."),
               ),
               Padding(
                 padding: EdgeInsets.only(top: SizeConfig.height(context, 0.47)),
                 child: Center(
-                  child: ButtonWidget(tiltFontWeight: FontWeight.w400,
+                  child: ButtonWidget(tiltFontWeight: FontWeight.w600,
                     onPressed: () {
                       Navigator.push(context, MaterialPageRoute(builder: (context)=>LoginScreen()));
                     },

@@ -22,14 +22,16 @@ class _SplashScreenState extends State<SplashScreen> {
       });
     });
     Future.delayed(Duration(seconds: 2), () {
-    Navigator.push(context, MaterialPageRoute(builder: (context)=>WelcomeScreen()));
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => const WelcomeScreen()));
     });
-
   }
-void dispose(){
+
+  void dispose() {
     _timer.cancel();
     super.dispose();
-}
+  }
+
   void initState() {
     navigateToWelcome();
     super.initState();
@@ -50,11 +52,11 @@ void dispose(){
           //color: Colors.yellow,
           child: (bigLogo == true)
               ? Image.asset("assets/logo_2.png",
-                  width: SizeConfig.width(context, 1))
+              width: SizeConfig.width(context, 1))
               : Image.asset(
-                  "assets/logo.png",
-                  width: SizeConfig.width(context, 0.3),
-                ),
+            "assets/logo.png",
+            width: SizeConfig.width(context, 0.3),
+          ),
         ),
       ),
     );

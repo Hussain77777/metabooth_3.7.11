@@ -1,3 +1,4 @@
+import 'package:dooz_color_picker/dooz_color_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:metabooth/constants/colors.dart';
 import 'package:metabooth/screens/login_or_register_screen.dart';
@@ -16,6 +17,11 @@ class WelcomeScreen extends StatefulWidget {
 }
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
+  Color? pickerColor;
+
+  //
+  Color? kelvinColor;
+  int? kelvinValue;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,7 +68,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       TextSpan(
                         text: "Welcome to ",
                         style: TextStyle(
-                          fontWeight: FontWeight.w900,
+                          fontWeight: FontWeight.w500,
                           fontFamily: "Inter",
                           color: GlobalColors.whiteColor,
                           fontSize: SizeConfig.width(context, 0.11),
@@ -72,7 +78,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                         text: "Metabooth.",
                         style: TextStyle(
                           color: GlobalColors.yellowColor,
-                          fontWeight: FontWeight.w300,
+                          fontWeight: FontWeight.w700,
                           fontFamily: "Inter",
                           fontSize: SizeConfig.width(context, 0.11),
                         ),
@@ -81,6 +87,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   ),
                 ),
               ),
+
               Padding(
                 padding:
                     EdgeInsets.only(top: SizeConfig.height(context, 0.475)),
@@ -92,13 +99,14 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                           MaterialPageRoute(
                               builder: (context) => LoginOrRegisterScreen()));
                     },
-                    title: "Enter",tiltFontWeight: FontWeight.w400,
+                    title: "Enter",tiltFontWeight: FontWeight.w600,
                     borderColor: Color(0xFFC8DE00),
                     innerColor: Color(0xFF000000),
-                    textColor: Colors.white,
+                    textColor:Color(0xFFC8DE00),
                   ),
                 ),
               ),
+
             ],
           ),
         ),
