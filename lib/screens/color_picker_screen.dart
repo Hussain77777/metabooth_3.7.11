@@ -280,7 +280,7 @@ class BoxWidget extends StatelessWidget {
       ),
       //    color: Colors.red,
       child: GridView.builder(
-          itemCount: 10,
+          itemCount: 20,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 3,
               childAspectRatio: 1.0,

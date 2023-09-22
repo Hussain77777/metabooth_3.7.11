@@ -69,14 +69,14 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                         text: "Welcome to ",
                         style: TextStyle(
                           fontWeight: FontWeight.w500,
-                          fontFamily: "Inter",
+                          fontFamily: "Inter",letterSpacing: -2.0,
                           color: GlobalColors.whiteColor,
                           fontSize: SizeConfig.width(context, 0.11),
                         ),
                       ),
                       TextSpan(
                         text: "Metabooth.",
-                        style: TextStyle(
+                        style: TextStyle(letterSpacing: -2.5,
                           color: GlobalColors.yellowColor,
                           fontWeight: FontWeight.w700,
                           fontFamily: "Inter",
