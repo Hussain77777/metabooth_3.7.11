@@ -67,17 +67,42 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
                 BackButtonWidget(),
                 Padding(
-                padding:  EdgeInsets.only(top: SizeConfig.height(context, 0.03)),
-                  child: MainTitleWidget(
-                      title: "Experience the Evolution of",
-                      titleFontWeight: FontWeight.w500,
-                      subTitle: " light.",
-                      subTitleFontWeight: FontWeight.w700),
+                  padding: EdgeInsets.only(
+                      top: SizeConfig.height(context, 0.06),
+                      left: SizeConfig.width(context, 0.1),
+                      right: SizeConfig.width(context, 0.15)),
+                  child: RichText(
+                    text: TextSpan(
+                      text: '',
+                      //   style: DefaultTextStyle.of(context).style,
+                      children: <TextSpan>[
+                        TextSpan(
+                          text: "Create an  ",
+                          style: TextStyle(height: 0.1,
+                            fontWeight: FontWeight.w500,letterSpacing: -2.5,
+                            fontFamily: "Inter",
+                            color: GlobalColors.whiteColor,
+                            fontSize: SizeConfig.width(context, 0.11),
+                          ),
+                        ),
+                        TextSpan(
+                          text: "Account.",
+                          style: TextStyle(letterSpacing: -2.5,
+                            color: GlobalColors.yellowColor,
+                            fontWeight: FontWeight.w700,
+                            fontFamily: "Inter",
+                            fontSize: SizeConfig.width(context, 0.11),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
+
                 SubTitleWidget(
                     subTitleFontWeight: FontWeight.w300,
                     titleFontWeight: FontWeight.w300,
-                    title: "Enter your Account details below to",
+                    title: "Enter your Account details                                                         below to",
                     subTitle: " register."),
                 Padding(
                   padding: EdgeInsets.only(

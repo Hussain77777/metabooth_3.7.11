@@ -607,24 +607,24 @@ class BoxWidget extends StatelessWidget {
                   image: AssetImage("assets/box.png"),
                 ),
               ),
-              child: ListTile(
-                title: Center(
-                  child: Text(
-                    "MetaBooth Dj",
+              child: Center(
+                child: ListTile(
+                  title: Text(
+                    "MetaBooth DJ",
                     style: TextStyle(
                         fontFamily: "Inter",
                         color: GlobalColors.whiteColor,
                         fontSize: SizeConfig.width(context, 0.028),
                         fontWeight: FontWeight.w700),
                   ),
-                ),
-                subtitle: Text(
-                  "Online",
-                  style: TextStyle(
-                      fontFamily: "Inter",
-                      color: GlobalColors.yellowColor,
-                      fontSize: SizeConfig.width(context, 0.025),
-                      fontWeight: FontWeight.w500),
+                  subtitle: Text(
+                    "Online",
+                    style: TextStyle(
+                        fontFamily: "Inter",
+                        color: GlobalColors.yellowColor,
+                        fontSize: SizeConfig.width(context, 0.025),
+                        fontWeight: FontWeight.w500),
+                  ),
                 ),
               ),
             );

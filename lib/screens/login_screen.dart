@@ -91,7 +91,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   padding:
                       EdgeInsets.only(top: SizeConfig.height(context, 0.03)),
                   child: MainTitleWidget(
-                      title: "Experience the Evolution of",
+                      title: "Experience the evolution of",
                       titleFontWeight: FontWeight.w500,
                       subTitle: " light.",
                       subTitleFontWeight: FontWeight.w700),

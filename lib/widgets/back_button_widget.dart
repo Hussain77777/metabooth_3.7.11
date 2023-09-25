@@ -10,7 +10,7 @@ class BackButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(left: SizeConfig.width(context, 0.06)),
+      padding: EdgeInsets.only(left: SizeConfig.width(context, 0.10)),
       child: GestureDetector(onTap: (){
         Navigator.pop(context);
       },

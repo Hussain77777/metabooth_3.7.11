@@ -21,7 +21,7 @@ class MainTitleWidget extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(
           top: SizeConfig.height(context, 0.03),
-          left: SizeConfig.width(context, 0.06),
+          left: SizeConfig.width(context, 0.1),
           right: SizeConfig.width(context, 0.06)),
       child: RichText(
         text: TextSpan(
@@ -69,8 +69,8 @@ class SubTitleWidget extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(
           top: SizeConfig.height(context, 0.01),
-          left: SizeConfig.width(context, 0.06),
-          right: SizeConfig.width(context, 0.06)),
+          left: SizeConfig.width(context, 0.1),
+          right: SizeConfig.width(context, 0.1)),
       child: RichText(
         text: TextSpan(
           text: '',
@@ -78,11 +78,12 @@ class SubTitleWidget extends StatelessWidget {
           children: <TextSpan>[
             TextSpan(
               text: title,
-              style: TextStyle(letterSpacing: -2.5,height: 0.1,
+              style: TextStyle(//letterSpacing: -2.5,
+                height: 0.1,
                fontWeight: titleFontWeight,
                 fontFamily: "Inter",
                 color: GlobalColors.whiteColor,
-                fontSize: SizeConfig.width(context, 0.035),
+                fontSize: SizeConfig.width(context, 0.038),
               ),
             ),
             TextSpan(
@@ -90,8 +91,8 @@ class SubTitleWidget extends StatelessWidget {
               style: TextStyle(
                 color: GlobalColors.yellowColor,
                  fontWeight: subTitleFontWeight,
-                fontFamily: "Inter",letterSpacing: -2.5,
-                fontSize: SizeConfig.width(context, 0.035),
+                fontFamily: "Inter",
+                fontSize: SizeConfig.width(context, 0.038),
               ),
             ),
           ],
