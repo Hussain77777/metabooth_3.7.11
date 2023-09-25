@@ -43,7 +43,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   curved_navigation_bar: ^1.0.3
-  dooz_color_picker: ^0.1.0
+
   flutter_colorpicker: ^1.0.3
   #google_fonts: ^6.0.0
   #http: ^1.1.0

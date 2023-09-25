@@ -30,8 +30,8 @@ class MainTitleWidget extends StatelessWidget {
           children: <TextSpan>[
             TextSpan(
               text: title,
-              style: TextStyle(
-                fontWeight: titleFontWeight,
+              style: TextStyle(height: 0.1,
+                fontWeight: titleFontWeight,letterSpacing: -2.5,
                 fontFamily: "Inter",
                 color: GlobalColors.whiteColor,
                 fontSize: SizeConfig.width(context, 0.11),
@@ -39,7 +39,7 @@ class MainTitleWidget extends StatelessWidget {
             ),
             TextSpan(
               text: subTitle,
-              style: TextStyle(
+              style: TextStyle(letterSpacing: -2.5,
                 color: GlobalColors.yellowColor,
                 fontWeight: subTitleFontWeight,
                 fontFamily: "Inter",
@@ -78,7 +78,7 @@ class SubTitleWidget extends StatelessWidget {
           children: <TextSpan>[
             TextSpan(
               text: title,
-              style: TextStyle(
+              style: TextStyle(letterSpacing: -2.5,height: 0.1,
                fontWeight: titleFontWeight,
                 fontFamily: "Inter",
                 color: GlobalColors.whiteColor,
@@ -90,7 +90,7 @@ class SubTitleWidget extends StatelessWidget {
               style: TextStyle(
                 color: GlobalColors.yellowColor,
                  fontWeight: subTitleFontWeight,
-                fontFamily: "Inter",
+                fontFamily: "Inter",letterSpacing: -2.5,
                 fontSize: SizeConfig.width(context, 0.035),
               ),
             ),

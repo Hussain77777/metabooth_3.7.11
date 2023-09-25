@@ -65,14 +65,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.3"
-  dooz_color_picker:
-    dependency: "direct main"
-    description:
-      name: dooz_color_picker
-      sha256: dcab5c209ad533eec229de56a90e767938dcafb6cc9e5649577cf978f8d9806a
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.1.0"
   email_validator:
     dependency: "direct main"
     description:
@@ -214,14 +206,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.5.0"
-  flutter_lints:
-    dependency: transitive
-    description:
-      name: flutter_lints
-      sha256: b543301ad291598523947dc534aaddc5aaad597b709d2426d3a0e0d44c5cb493
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.4"
   flutter_switch:
     dependency: "direct main"
     description:
@@ -256,14 +240,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.6.5"
-  lints:
-    dependency: transitive
-    description:
-      name: lints
-      sha256: a2c3d198cb5ea2e179926622d433331d8b58374ab8f29cdda6e863bd62fd369c
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.1"
   matcher:
     dependency: transitive
     description:

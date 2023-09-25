@@ -66,11 +66,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                 ),
                 BackButtonWidget(),
-                MainTitleWidget(
-                    title: "Experience the Evolution of",
-                    titleFontWeight: FontWeight.w500,
-                    subTitle: " light.",
-                    subTitleFontWeight: FontWeight.w700),
+                Padding(
+                padding:  EdgeInsets.only(top: SizeConfig.height(context, 0.03)),
+                  child: MainTitleWidget(
+                      title: "Experience the Evolution of",
+                      titleFontWeight: FontWeight.w500,
+                      subTitle: " light.",
+                      subTitleFontWeight: FontWeight.w700),
+                ),
                 SubTitleWidget(
                     subTitleFontWeight: FontWeight.w300,
                     titleFontWeight: FontWeight.w300,

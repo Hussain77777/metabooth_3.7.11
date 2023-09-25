@@ -1,4 +1,4 @@
-import 'package:dooz_color_picker/dooz_color_picker.dart';
+
 import 'package:flutter/material.dart';
 import 'package:metabooth/constants/colors.dart';
 import 'package:metabooth/screens/login_or_register_screen.dart';
@@ -22,6 +22,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   //
   Color? kelvinColor;
   int? kelvinValue;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,22 +45,24 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             children: [
               Container(
                 height: SizeConfig.height(context, 0.05),
-               // color: Colors.red,
+                // color: Colors.red,
                 margin: EdgeInsets.symmetric(
                   horizontal: SizeConfig.width(context, 0.2),
                   //     vertical: SizeConfig.height(context, 0.035)
                 ),
                 child: Image.asset(
-                  "assets/metabooth.png",width: SizeConfig.width(context, 0.3),
+                  "assets/metabooth.png",
+                  width: SizeConfig.width(context, 0.3),
                 ),
               ),
-
               Padding(
                 padding: EdgeInsets.only(
-                    top: SizeConfig.height(context, 0.09),
-                    left: SizeConfig.width(context, 0.06),
-                    right: SizeConfig.width(context, 0.06)),
+                  top: SizeConfig.height(context, 0.09),
+                  left: SizeConfig.width(context, 0.06),
+                  right: SizeConfig.width(context, 0.06),
+                ),
                 child: RichText(
+
                   textAlign: TextAlign.center,
                   text: TextSpan(
                     text: '',
@@ -67,16 +70,18 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     children: <TextSpan>[
                       TextSpan(
                         text: "Welcome to ",
-                        style: TextStyle(
+                        style: TextStyle(height: 0.1,
                           fontWeight: FontWeight.w500,
-                          fontFamily: "Inter",letterSpacing: -2.0,
+                          fontFamily: "Inter",
+                          letterSpacing: -2.5,
                           color: GlobalColors.whiteColor,
                           fontSize: SizeConfig.width(context, 0.11),
                         ),
                       ),
                       TextSpan(
                         text: "Metabooth.",
-                        style: TextStyle(letterSpacing: -2.5,
+                        style: TextStyle(
+                          letterSpacing: -2.5,
                           color: GlobalColors.yellowColor,
                           fontWeight: FontWeight.w700,
                           fontFamily: "Inter",
@@ -87,7 +92,6 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   ),
                 ),
               ),
-
               Padding(
                 padding:
                     EdgeInsets.only(top: SizeConfig.height(context, 0.475)),
@@ -99,14 +103,14 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                           MaterialPageRoute(
                               builder: (context) => LoginOrRegisterScreen()));
                     },
-                    title: "Enter",tiltFontWeight: FontWeight.w600,
+                    title: "Enter",
+                    tiltFontWeight: FontWeight.w600,
                     borderColor: Color(0xFFC8DE00),
                     innerColor: Color(0xFF000000),
-                    textColor:Color(0xFFC8DE00),
+                    textColor: Color(0xFFC8DE00),
                   ),
                 ),
               ),
-
             ],
           ),
         ),

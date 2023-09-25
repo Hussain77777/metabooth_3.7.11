@@ -1,6 +1,8 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
+import 'package:flutter_switch/flutter_switch.dart';
 
 import 'package:metabooth/constants/colors.dart';
 import 'package:metabooth/constants/size_config.dart';
@@ -15,6 +17,7 @@ class ColorPickerScreen extends StatefulWidget {
 
 class _ColorPickerScreenState extends State<ColorPickerScreen> {
   int _page = 2;
+  List<int>colorList=[];
   GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
   final _colorNotifier = ValueNotifier<Color>(Colors.green);
   List<Tabs> tabList = [
@@ -31,6 +34,18 @@ class _ColorPickerScreenState extends State<ColorPickerScreen> {
       isSelected: false,
     ),
   ];
+
+  bool isSwitched = true;
+
+  String? colorValue;
+  Color? color1;
+
+  bool isSelectedColor = false;
+
+  double rating = 10.0;
+  double setting = 10.0;
+
+  int ?colorint;
 
   @override
   Widget build(BuildContext context) {
@@ -85,10 +100,6 @@ class _ColorPickerScreenState extends State<ColorPickerScreen> {
           setState(() {
             _page = index;
           });
-          /*    if (index == 4) {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => Settings()));
-          }*/
         },
         letIndexChange: (index) => true,
       ),
@@ -105,7 +116,7 @@ class _ColorPickerScreenState extends State<ColorPickerScreen> {
             fit: BoxFit.cover,
           ),
         ),
-        child: SingleChildScrollView(
+        child: SingleChildScrollView(physics: NeverScrollableScrollPhysics(),
             child: Column(
           children: [
             Padding(
@@ -146,7 +157,7 @@ class _ColorPickerScreenState extends State<ColorPickerScreen> {
               ),
             ),
             Container(
-              height: SizeConfig.height(context, 0.05),
+              height: SizeConfig.height(context, 0.03),
               // color: Colors.red,
               margin: EdgeInsets.symmetric(
                 horizontal: SizeConfig.width(context, 0.2),
@@ -165,77 +176,351 @@ class _ColorPickerScreenState extends State<ColorPickerScreen> {
   }
 
   Widget ColorWidget(BuildContext context) {
-    return Container(
-      height: SizeConfig.height(context, 0.70),
-      child: Card(
-        elevation: 10,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(
-              SizeConfig.width(context, 0.2),
-            ),
-            topRight: Radius.circular(
-              SizeConfig.width(context, 0.2),
+    return Column(
+      children: [
+        Padding(
+          padding: EdgeInsets.only(
+            top: SizeConfig.height(context, 0.02),
+            //    bottom: SizeConfig.height(context, 0.01)
+          ),
+          child: RichText(
+            text: TextSpan(
+              text: '',
+              //   style: DefaultTextStyle.of(context).style,
+              children: <TextSpan>[
+                TextSpan(
+                  text: "MetaBooth",
+                  style: TextStyle(
+                    height: 0.1,
+                    fontWeight: FontWeight.w500,
+                    letterSpacing: -2.5,
+                    fontFamily: "Inter",
+                    color: GlobalColors.whiteColor,
+                    fontSize: SizeConfig.width(context, 0.1),
+                  ),
+                ),
+                TextSpan(
+                  text: " DJ",
+                  style: TextStyle(
+                    letterSpacing: -2.5,
+                    color: GlobalColors.yellowColor,
+                    fontWeight: FontWeight.w700,
+                    fontFamily: "Inter",
+                    fontSize: SizeConfig.width(context, 0.1),
+                  ),
+                ),
+              ],
             ),
           ),
         ),
-/*      padding: EdgeInsets.only(
-          left: SizeConfig.width(context, 0.06),
-          top: SizeConfig.height(context, 0.02),
-          right: SizeConfig.width(context, 0.04),
-        ),*/
-        child: Column(
-          children: [
-            Padding(
-              padding: EdgeInsets.only(
-                  left: SizeConfig.width(
-                    context,
-                    0.05,
-                  ),
-                  right: SizeConfig.width(
-                    context,
-                    0.05,
-                  ),
-                  top: SizeConfig.height(context, 0.05)),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: List.generate(3, (index) {
-                  return InkWell(onTap: (){
-                    setState(() {
-                      tabList.forEach((element) {element.isSelected=false;});
-                      tabList[index].isSelected=true;
-                    });
+        Container(
+          height: SizeConfig.height(context, 0.05),
+          width: SizeConfig.width(context, 0.55),
+          //     color: Colors.red,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "Online",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  height: 0.1,
+                  fontWeight: FontWeight.w500,
+                  fontFamily: "Inter",
+                  color: GlobalColors.yellowColor,
+                  fontSize: SizeConfig.width(context, 0.03),
+                ),
+              ),
+              Container(
+                alignment: Alignment.center,
+                height: SizeConfig.height(context, 0.002),
+                width: SizeConfig.width(context, 0.25),
+                color: Colors.white,
+              ),
+              FlutterSwitch(
+                  height: 18,
+                  width: SizeConfig.width(context, 0.12),
+                  activeText: "Avalaible",
+                  inactiveText: "Away",
+                  activeTextColor: Colors.black,
+                  inactiveTextColor: Colors.black,
+                  activeColor: GlobalColors.yellowColor,
+                  inactiveColor: Colors.blueGrey,
+                  value: isSwitched,
+                  onToggle: (value) async {
+                    print(value);
 
-                    },
-                    child: Container(
-                      height: SizeConfig.height(context, 0.07),
-                      width: SizeConfig.width(context, 0.28),
-                      decoration: BoxDecoration(
-                        color: (tabList[index].isSelected)
-                            ? Colors.black
-                            : Colors.white,
-                        border: Border.all(color: Color(0xFF8A8A8A), width: 2),
-                        borderRadius: BorderRadius.circular(
-                            SizeConfig.width(context, 0.04)),
-                      ),
-                      child: Center(
-                          child: Text(
-                        tabList[index].label ?? "",
-                        style: TextStyle(color:(tabList[index].isSelected)?GlobalColors.yellowColor: Color(0xFF8A8A8A),),
-                      )),
-                    ),
-                  );
-                }),
+                    setState(() {
+                      isSwitched = value;
+                      //   print("prefs.getBool('s')  ${prefs.getBool('s')}");
+                    });
+                  }),
+            ],
+          ),
+        ),
+        Container(
+          height: SizeConfig.height(context, 0.70),
+          child: Card(
+            elevation: 10,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(
+                  SizeConfig.width(context, 0.1),
+                ),
+                topRight: Radius.circular(
+                  SizeConfig.width(context, 0.1),
+                ),
               ),
             ),
-            ColorPicker(
-              pickerColor: Color(0xff443a49),
-              paletteType: PaletteType.hueWheel,
-              onColorChanged: (Color value) {},
-            )
-          ],
+            child: Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(
+                      left: SizeConfig.width(
+                        context,
+                        0.05,
+                      ),
+                      right: SizeConfig.width(
+                        context,
+                        0.05,
+                      ),
+                      top: SizeConfig.height(context, 0.05)),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: List.generate(3, (index) {
+                      return InkWell(
+                        onTap: () {
+                          setState(() {
+                            tabList.forEach((element) {
+                              element.isSelected = false;
+                            });
+                            tabList[index].isSelected = true;
+                          });
+                        },
+                        child: Container(
+                          height: SizeConfig.height(context, 0.07),
+                          width: SizeConfig.width(context, 0.28),
+                          decoration: BoxDecoration(
+                            color: (tabList[index].isSelected)
+                                ? Color(0xFF0E0E0E)
+                                : Colors.white,
+                            border: Border.all(
+                                color: (tabList[index].isSelected)
+                                    ? Color(0xFFC8DE00)
+                                    : Color(0xFF8A8A8A),
+                                width: 2),
+                            borderRadius: BorderRadius.circular(
+                                SizeConfig.width(context, 0.04)),
+                          ),
+                          child: Center(
+                              child: Text(
+                            tabList[index].label ?? "",
+                            style: TextStyle(
+                              fontWeight: FontWeight.w700,
+                              fontFamily: "Inter",
+                              color: (tabList[index].isSelected)
+                                  ? Color(0xFFC8DE00)
+                                  : Color(0xFF8A8A8A),
+                            ),
+                          )),
+                        ),
+                      );
+                    }),
+                  ),
+                ),
+                tabList.last.isSelected
+                    ? Container(
+                        //color: Colors.red,
+                        height: SizeConfig.height(context, 0.40),
+                        margin: EdgeInsets.only(
+                          left: SizeConfig.width(
+                            context,
+                            0.05,
+                          ),
+                          right: SizeConfig.width(
+                            context,
+                            0.05,
+                          ),
+                          //    top: SizeConfig.height(context, 0.05)
+                        ),
+                        child:colorList.isEmpty?Container():
+                        GridView.builder(
+                            itemCount: colorList.length,
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisSpacing: SizeConfig.width(context, 0.02),
+                              mainAxisSpacing: SizeConfig.height(context, 0.02),
+                              crossAxisCount: 5,
+                              childAspectRatio: 1.0,
+                            ),
+                            itemBuilder: (context, index) {
+                              return Container(
+                                decoration: BoxDecoration(
+                                  color: Color(colorList[index]),
+                                  border: Border.all(color: Color(0xFFECECEC,),width: 4),
+                                  borderRadius: BorderRadius.circular(
+                                      SizeConfig.width(context, 0.1)),
+                                ),
+                              );
+                            }),
+                      )
+                    : ColorPicker(
+                       // displayThumbColor: false,
+                        enableAlpha: false,
+                        //progress: 0.97,
+                        pickerColor: Color(0xff443a49),
+                        paletteType: PaletteType.hueWheel,
+                        progressslider: 0.95,
+                        onColorChanged: (Color value) {
+/*
+                          var colorValue1 = value.toString().split("(");
+                          print("colorValue1  ${colorValue1[1]}");
+                          var colorValue2 =
+                              colorValue1[1].toString().split(")");
+                         */
+                          color1=value;
+                        //  setState(() {
+                            color1 = value;
+                            colorint=value.value;
+                        //  });
+                        print("colorValue2 ${color1}");
+                        },
+                      ),
+                tabList.last.isSelected
+                    ?Container():   Padding(
+                  padding: EdgeInsets.only(
+                    left: SizeConfig.width(
+                      context,
+                      0.05,
+                    ),
+                    right: SizeConfig.width(
+                      context,
+                      0.05,
+                    ),
+                    //    top: SizeConfig.height(context, 0.05)
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Text(
+                        color1.toString() ?? "",
+                        style: TextStyle(
+                          fontFamily: "Inter",
+                          fontSize: SizeConfig.width(context, 0.03),
+                          fontWeight: isSelectedColor
+                              ? FontWeight.bold
+                              : FontWeight.normal,
+                          color:
+                              isSelectedColor ? Color(0xFF5F3CFF) : Colors.red,
+                        ),
+                      ),
+                      IconButton(
+                          onPressed: () {
+                            setState(() {
+                              colorList.add(colorint??0);
+                              isSelectedColor = !isSelectedColor;
+                            });
+                          },
+                          icon: Icon(
+                            Icons.favorite,
+                            color: isSelectedColor
+                                ? Color(0xFF5F3CFF)
+                                : Colors.red,
+                          )),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(
+                    left: SizeConfig.width(
+                      context,
+                      0.05,
+                    ),
+                    right: SizeConfig.width(
+                      context,
+                      0.05,
+                    ),
+                    //    top: SizeConfig.height(context, 0.05)
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Image.asset(
+                        "assets/bright.png",
+                        width: SizeConfig.width(context, 0.08),
+                      ),
+                      Slider.adaptive(
+                          min: 10,
+                          max: 100,
+                          inactiveColor: Color(0xFFE3E3E3),
+                          activeColor: Colors.black,
+                          thumbColor: Colors.black,
+                          value: rating,
+                          onChanged: (newrating) {
+                            print("newratin ${newrating}");
+                            setState(() {
+                              rating = newrating;
+                            });
+                          }),
+                      Text(
+                        "${rating.toStringAsFixed(0) ?? ""}%",
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: SizeConfig.width(context, 0.05),
+                            fontFamily: "Inter"),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(
+                    left: SizeConfig.width(
+                      context,
+                      0.05,
+                    ),
+                    right: SizeConfig.width(
+                      context,
+                      0.05,
+                    ),
+                    //    top: SizeConfig.height(context, 0.05)
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Image.asset(
+                        "assets/img_3.png",
+                        width: SizeConfig.width(context, 0.08),
+                      ),
+                      Slider.adaptive(
+                          inactiveColor: Color(0xFFE3E3E3),
+                          min: 10,
+                          max: 100,
+                          activeColor: Colors.black,
+                          thumbColor: Colors.black,
+                          value: setting,
+                          onChanged: (newrating) {
+                            print("newratin ${newrating}");
+                            setState(() {
+                              setting = newrating;
+                            });
+                          }),
+                      Text(
+                        "${setting.toStringAsFixed(0) ?? ""}%",
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: SizeConfig.width(context, 0.05),
+                            fontFamily: "Inter"),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
         ),
-      ),
+      ],
     );
   }
 
@@ -293,9 +578,9 @@ class BoxWidget extends StatelessWidget {
                   image: AssetImage("assets/box.png"),
                 ),
               ),
-              child: Center(
-                child: ListTile(
-                  title: Text(
+              child: ListTile(
+                title: Center(
+                  child: Text(
                     "MetaBooth Dj",
                     style: TextStyle(
                         fontFamily: "Inter",
@@ -303,14 +588,14 @@ class BoxWidget extends StatelessWidget {
                         fontSize: SizeConfig.width(context, 0.028),
                         fontWeight: FontWeight.w700),
                   ),
-                  subtitle: Text(
-                    "Online",
-                    style: TextStyle(
-                        fontFamily: "Inter",
-                        color: GlobalColors.yellowColor,
-                        fontSize: SizeConfig.width(context, 0.025),
-                        fontWeight: FontWeight.w500),
-                  ),
+                ),
+                subtitle: Text(
+                  "Online",
+                  style: TextStyle(
+                      fontFamily: "Inter",
+                      color: GlobalColors.yellowColor,
+                      fontSize: SizeConfig.width(context, 0.025),
+                      fontWeight: FontWeight.w500),
                 ),
               ),
             );

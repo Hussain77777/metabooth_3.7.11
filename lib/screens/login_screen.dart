@@ -36,8 +36,10 @@ class _LoginScreenState extends State<LoginScreen> {
       setState(() {
         loading = false;
       });
-      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>AddDeviceScreen()), (route) => false);
-
+      Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (context) => AddDeviceScreen()),
+          (route) => false);
     }).onError((error, stackTrace) {
       print("error ${error.toString()}");
       setState(() {
@@ -63,8 +65,9 @@ class _LoginScreenState extends State<LoginScreen> {
               fit: BoxFit.cover),
         ),
         child: SingleChildScrollView(
-        //  physics: NeverScrollableScrollPhysics(),
-          child: Form(key: formkey,
+          //  physics: NeverScrollableScrollPhysics(),
+          child: Form(
+            key: formkey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -78,13 +81,21 @@ class _LoginScreenState extends State<LoginScreen> {
                       //     vertical: SizeConfig.height(context, 0.035)
                     ),
                     child: Image.asset(
-                      "assets/metabooth.png",width: SizeConfig.width(context, 0.3),
+                      "assets/metabooth.png",
+                      width: SizeConfig.width(context, 0.3),
                     ),
                   ),
                 ),
                 BackButtonWidget(),
-                MainTitleWidget(
-                    title: "Experience the Evolution of", titleFontWeight: FontWeight.w500,subTitle: " light.",subTitleFontWeight: FontWeight.w700),
+                Padding(
+                  padding:
+                      EdgeInsets.only(top: SizeConfig.height(context, 0.03)),
+                  child: MainTitleWidget(
+                      title: "Experience the Evolution of",
+                      titleFontWeight: FontWeight.w500,
+                      subTitle: " light.",
+                      subTitleFontWeight: FontWeight.w700),
+                ),
                 Padding(
                   padding: EdgeInsets.only(
                       bottom: SizeConfig.height(context, 0.015),
@@ -143,12 +154,14 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ), */
                 Padding(
-                  padding: EdgeInsets.only(top: SizeConfig.height(context, 0.2)),
+                  padding:
+                      EdgeInsets.only(top: SizeConfig.height(context, 0.2)),
                   child: Center(
                     child: GestureDetector(
                       onTap: () {
-                        if(formkey.currentState!.validate()){
-                        login();}
+                        if (formkey.currentState!.validate()) {
+                          login();
+                        }
                         // Navigator.push(context, MaterialPageRoute(builder: (context)=>AddDeviceScreen()));
                       },
                       child: Container(
@@ -166,10 +179,11 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
                         child: Center(
-                            child: loading ==false
+                            child: loading == false
                                 ? Text(
                                     "Login",
-                                    style: TextStyle(fontFamily: "Inter",
+                                    style: TextStyle(
+                                        fontFamily: "Inter",
                                         color: Colors.black,
                                         fontWeight: FontWeight.w600,
                                         fontSize:
@@ -183,7 +197,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: SizeConfig.height(context, 0.02)),
+                  padding:
+                      EdgeInsets.only(top: SizeConfig.height(context, 0.02)),
                   child: Center(
                     child: RegisterButtonWidget(
                       subtitle: "Click Here",
