@@ -17,9 +17,11 @@ class ColorPickerScreen extends StatefulWidget {
 
 class _ColorPickerScreenState extends State<ColorPickerScreen> {
   int _page = 2;
-  List<int>colorList=[];
+  List<int> colorList = [];
   GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
-  final _colorNotifier = ValueNotifier<Color>(Colors.green);
+
+  //final _colorNotifier =
+  late ValueNotifier<Color> colornotifier;
   List<Tabs> tabList = [
     Tabs(
       label: "Color Picker",
@@ -45,7 +47,13 @@ class _ColorPickerScreenState extends State<ColorPickerScreen> {
   double rating = 10.0;
   double setting = 10.0;
 
-  int ?colorint;
+  int? colorint;
+
+  void initState() {
+    colornotifier = ValueNotifier<Color>(Colors.green);
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -116,61 +124,62 @@ class _ColorPickerScreenState extends State<ColorPickerScreen> {
             fit: BoxFit.cover,
           ),
         ),
-        child: SingleChildScrollView(physics: NeverScrollableScrollPhysics(),
+        child: SingleChildScrollView(
+            physics: NeverScrollableScrollPhysics(),
             child: Column(
-          children: [
-            Padding(
-              padding: EdgeInsets.only(
-                left: SizeConfig.width(context, 0.06),
-                top: SizeConfig.height(context, 0.02),
-                right: SizeConfig.width(context, 0.04),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.arrow_back,
-                          color: Colors.white,
-                          size: SizeConfig.width(context, 0.05),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(
-                              left: SizeConfig.width(context, 0.03)),
-                          child: Text(
-                            "Back",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: SizeConfig.width(context, 0.035)),
-                          ),
-                        )
-                      ],
-                    ),
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(
+                    left: SizeConfig.width(context, 0.06),
+                    top: SizeConfig.height(context, 0.02),
+                    right: SizeConfig.width(context, 0.04),
                   ),
-                  IconsWidget(context)
-                ],
-              ),
-            ),
-            Container(
-              height: SizeConfig.height(context, 0.03),
-              // color: Colors.red,
-              margin: EdgeInsets.symmetric(
-                horizontal: SizeConfig.width(context, 0.2),
-                //     vertical: SizeConfig.height(context, 0.035)
-              ),
-              child: Image.asset(
-                "assets/metabooth.png",
-                width: SizeConfig.width(context, 0.3),
-              ),
-            ),
-            _page == 3 || _page == 4 ? BoxWidget() : ColorWidget(context),
-          ],
-        )),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.arrow_back,
+                              color: Colors.white,
+                              size: SizeConfig.width(context, 0.05),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(
+                                  left: SizeConfig.width(context, 0.03)),
+                              child: Text(
+                                "Back",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: SizeConfig.width(context, 0.035)),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      IconsWidget(context)
+                    ],
+                  ),
+                ),
+                Container(
+                  height: SizeConfig.height(context, 0.03),
+                  // color: Colors.red,
+                  margin: EdgeInsets.symmetric(
+                    horizontal: SizeConfig.width(context, 0.2),
+                    //     vertical: SizeConfig.height(context, 0.035)
+                  ),
+                  child: Image.asset(
+                    "assets/metabooth.png",
+                    width: SizeConfig.width(context, 0.3),
+                  ),
+                ),
+                _page == 3 || _page == 4 ? BoxWidget() : ColorWidget(context),
+              ],
+            )),
       ),
     );
   }
@@ -343,93 +352,113 @@ class _ColorPickerScreenState extends State<ColorPickerScreen> {
                           ),
                           //    top: SizeConfig.height(context, 0.05)
                         ),
-                        child:colorList.isEmpty?Container():
-                        GridView.builder(
-                            itemCount: colorList.length,
-                            gridDelegate:
-                                SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisSpacing: SizeConfig.width(context, 0.02),
-                              mainAxisSpacing: SizeConfig.height(context, 0.02),
-                              crossAxisCount: 5,
-                              childAspectRatio: 1.0,
-                            ),
-                            itemBuilder: (context, index) {
-                              return Container(
-                                decoration: BoxDecoration(
-                                  color: Color(colorList[index]),
-                                  border: Border.all(color: Color(0xFFECECEC,),width: 4),
-                                  borderRadius: BorderRadius.circular(
-                                      SizeConfig.width(context, 0.1)),
+                        child: colorList.isEmpty
+                            ? Container()
+                            : GridView.builder(
+                                itemCount: colorList.length,
+                                gridDelegate:
+                                    SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisSpacing:
+                                      SizeConfig.width(context, 0.02),
+                                  mainAxisSpacing:
+                                      SizeConfig.height(context, 0.02),
+                                  crossAxisCount: 5,
+                                  childAspectRatio: 1.0,
                                 ),
-                              );
-                            }),
+                                itemBuilder: (context, index) {
+                                  return Container(
+                                    decoration: BoxDecoration(
+                                      color: Color(colorList[index]),
+                                      border: Border.all(
+                                          color: Color(
+                                            0xFFECECEC,
+                                          ),
+                                          width: 4),
+                                      borderRadius: BorderRadius.circular(
+                                          SizeConfig.width(context, 0.1)),
+                                    ),
+                                  );
+                                }),
                       )
-                    : ColorPicker(
-                       // displayThumbColor: false,
-                        enableAlpha: false,
-                        //progress: 0.97,
-                        pickerColor: Color(0xff443a49),
-                        paletteType: PaletteType.hueWheel,
-                        progressslider: 0.95,
-                        onColorChanged: (Color value) {
+                    :ColorPicker(
+                  onHsvColorChanged: (color) {
+                    print("colorValue2222 ${color.toColor()}");
+                    //    setState(() {});
+                  },
+                  // displayThumbColor: false,
+                  enableAlpha: false,
+                  showLabel: true,
+                  //progress: 0.97,
+                  pickerColor: Color(0xff443a49),
+                  paletteType: PaletteType.hueWheel,
+                  progressslider: 0.95,
+                  onColorChanged: (Color value) {
 /*
                           var colorValue1 = value.toString().split("(");
                           print("colorValue1  ${colorValue1[1]}");
                           var colorValue2 =
                               colorValue1[1].toString().split(")");
                          */
-                          color1=value;
-                        //  setState(() {
-                            color1 = value;
-                            colorint=value.value;
-                        //  });
-                        print("colorValue2 ${color1}");
-                        },
-                      ),
+                    color1 = value;
+                    //  setState(() {
+                    colornotifier.value=value;
+                    color1 = value;
+                    colorint = value.value;
+                    // });
+                    print("colorValue2 ${color1}");
+                  },
+                ),
+
                 tabList.last.isSelected
-                    ?Container():   Padding(
-                  padding: EdgeInsets.only(
-                    left: SizeConfig.width(
-                      context,
-                      0.05,
-                    ),
-                    right: SizeConfig.width(
-                      context,
-                      0.05,
-                    ),
-                    //    top: SizeConfig.height(context, 0.05)
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text(
-                        color1.toString() ?? "",
-                        style: TextStyle(
-                          fontFamily: "Inter",
-                          fontSize: SizeConfig.width(context, 0.03),
-                          fontWeight: isSelectedColor
-                              ? FontWeight.bold
-                              : FontWeight.normal,
-                          color:
-                              isSelectedColor ? Color(0xFF5F3CFF) : Colors.red,
+                    ? Container()
+                    : Padding(
+                        padding: EdgeInsets.only(
+                          left: SizeConfig.width(
+                            context,
+                            0.05,
+                          ),
+                          right: SizeConfig.width(
+                            context,
+                            0.05,
+                          ),
+                          //    top: SizeConfig.height(context, 0.05)
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            ValueListenableBuilder(
+                                valueListenable: colornotifier,
+                                builder: (context, value, child) => Text(
+                                  color1.toString() ?? "",
+                                  style: TextStyle(
+                                    fontFamily: "Inter",
+                                    fontSize: SizeConfig.width(context, 0.03),
+                                    fontWeight: isSelectedColor
+                                        ? FontWeight.bold
+                                        : FontWeight.normal,
+                                    color: isSelectedColor
+                                        ? Color(0xFF5F3CFF)
+                                        : Colors.red,
+                                  ),
+                                ))
+                            ,
+                            IconButton(
+                                onPressed: () {
+                                  setState(() {
+                                    colorList.add(colorint ?? 0);
+                                    isSelectedColor = !isSelectedColor;
+                                  });
+                                },
+                                icon: Icon(
+                                  Icons.favorite,
+                                  color: isSelectedColor
+                                      ? Color(0xFF5F3CFF)
+                                      : Colors.red,
+                                )),
+                          ],
                         ),
                       ),
-                      IconButton(
-                          onPressed: () {
-                            setState(() {
-                              colorList.add(colorint??0);
-                              isSelectedColor = !isSelectedColor;
-                            });
-                          },
-                          icon: Icon(
-                            Icons.favorite,
-                            color: isSelectedColor
-                                ? Color(0xFF5F3CFF)
-                                : Colors.red,
-                          )),
-                    ],
-                  ),
-                ),
+                
                 Padding(
                   padding: EdgeInsets.only(
                     left: SizeConfig.width(
