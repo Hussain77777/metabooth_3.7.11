@@ -99,11 +99,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                 ),
 
-                SubTitleWidget(
-                    subTitleFontWeight: FontWeight.w300,
-                    titleFontWeight: FontWeight.w300,
-                    title: "Enter your Account details                                                         below to",
-                    subTitle: " register."),
+                Padding(
+                  padding:  EdgeInsets.only(right: SizeConfig.width(context,0.38)),
+                  child: SubTitleWidget(
+                      subTitleFontWeight: FontWeight.w300,
+                      titleFontWeight: FontWeight.w300,
+                      title: "Enter your account details below to",
+                      subTitle: " register."),
+                ),
                 Padding(
                   padding: EdgeInsets.only(
                       bottom: SizeConfig.height(context, 0.015),

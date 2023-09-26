@@ -40,7 +40,7 @@ class _ColorPickerScreenState extends State<ColorPickerScreen> {
   bool isSwitched = true;
 
   String? colorValue;
-  Color? color1;
+  Color? color1=Color(0xFFFFFFFF);
 
   bool isSelectedColor = false;
 
@@ -496,7 +496,7 @@ class _ColorPickerScreenState extends State<ColorPickerScreen> {
                         style: TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.bold,
-                            fontSize: SizeConfig.width(context, 0.05),
+                            fontSize: SizeConfig.width(context, 0.04),
                             fontFamily: "Inter"),
                       ),
                     ],
@@ -539,7 +539,7 @@ class _ColorPickerScreenState extends State<ColorPickerScreen> {
                         style: TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.bold,
-                            fontSize: SizeConfig.width(context, 0.05),
+                            fontSize: SizeConfig.width(context, 0.04),
                             fontFamily: "Inter"),
                       ),
                     ],
