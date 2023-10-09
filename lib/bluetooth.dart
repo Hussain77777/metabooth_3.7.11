@@ -1,47 +1,11 @@
 import 'dart:async';
-import 'dart:convert'show utf8;
+import 'dart:convert' show utf8;
 import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 import 'package:get/get.dart';
-
-class BluetoothController extends GetxController {
-  //FlutterBluePlus flutterBluePlus = FlutterBluePlus();
-
-  Future scanDevice() async {
-    // Setup Listener for scan results.
-// device not found? see "Common Problems" in the README
-    await FlutterBluePlus.startScan(timeout: Duration(seconds: 20))
-        .then((value) => null);
-    Set<DeviceIdentifier> seen = {};
-
-    var subscription = FlutterBluePlus.scanResults.listen(
-      (results) {
-        print("hasssssssssssssssssssssssssssss ${results.length}");
-        for (ScanResult r in results) {
-          if (seen.contains(r.device.remoteId) == false) {
-            print(
-                '${r.device.remoteId}: "${r.advertisementData.localName}" found! rssi: ${r.rssi}');
-            seen.add(r.device.remoteId);
-          }
-        }
-      },
-      // onError(e) => print(e);
-    );
-
-// Start scanning
-
-// Stop scanning
-    await FlutterBluePlus.stopScan();
-
-    /*   FlutterBluePlus.startScan(timeout: Duration(seconds: 5));
-    print("flutter blue result ${FlutterBluePlus.scanResults.length}");
-    FlutterBluePlus.stopScan();*/
-  }
-
-  Stream<List<ScanResult>> get scanResults => FlutterBluePlus.scanResults;
-}
+import 'package:metabooth/bluetooth_id_password.dart';
 
 class BlueUI extends StatefulWidget {
   const BlueUI({super.key});
@@ -53,8 +17,16 @@ class BlueUI extends StatefulWidget {
 class _BlueUIState extends State<BlueUI> {
   BluetoothDevice? device;
   StreamSubscription<List<ScanResult>>? subscription;
+  final StreamController<List<ScanResult>> controller =
+      StreamController<List<ScanResult>>();
+  List<ScanResult> result = [];
+
+  bool isLoading=false;
 
   Future scanB() async {
+    setState(() {
+      isLoading=true;
+    });
     await FlutterBluePlus.startScan(timeout: Duration(seconds: 20))
         .then((value) => null);
     Set<DeviceIdentifier> seen = {};
@@ -65,46 +37,56 @@ class _BlueUIState extends State<BlueUI> {
     subscription = FlutterBluePlus.scanResults.listen(
       (results) {
         print("hasssssssssssssssssssssssssssss ${results.length}");
-
-        for (ScanResult r in results) {
-          if (seen.contains(r.device.remoteId) == false) {
-            if (r.device.name == "ESP32-PROJECT-LED") {
-              device = r.device;
-              setState(() {});
-              print("inside condition");
+        results.forEach((data) {
+          if (data.device.name.contains("ESP")) {
+            if (result.isEmpty) {
+              result.add(data);
+            } else {
+              result.forEach((element) {
+                if (element.device.name != data.device.name) {
+                  result.add(data);
+                }
+              });
             }
-
-            print("name ${r.device.name}");
-            print("name ${r.device.connectionState}");
-            print("name ${r.device.servicesList}");
-            print("name ${r.advertisementData}");
-            print(
-                '${r.device.remoteId}: "${r.advertisementData.localName}" found! rssi: ${r.rssi}');
-            seen.add(r.device.remoteId);
           }
-        }
+        });
       },
       // onError(e) => print(e);
     );
-
-    print("after 2 Seconds ");
+    Future.delayed(Duration(seconds: 3), () {
+      print("after 3 Seconds ");
+      setState(() {});
+      subscription?.cancel();
+      isLoading=false;
+      setState(() {});
+    });
   }
 
   List<BluetoothService>? services;
 
   @override
   void initState() {
-    scanB();
     // TODO: implement initState
     super.initState();
   }
 
   BluetoothCharacteristic? targetCharacterstic;
 
+  Stream<List<ScanResult>> get counterStream => controller.stream;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(title: Text("conneeee"), actions: [
+        TextButton(
+            onPressed: () {
+              scanB();
+            },
+            child: Text(
+              "Scan",
+              style: TextStyle(color: Colors.black),
+            ))
+      ]),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
@@ -127,10 +109,8 @@ class _BlueUIState extends State<BlueUI> {
 
 // Connect to the device
                 await device?.connect();
-
               },
               child: Text("connect")),
-
           ElevatedButton(
               onPressed: () async {
                 services = await device?.discoverServices();
@@ -138,19 +118,19 @@ class _BlueUIState extends State<BlueUI> {
                 services?.forEach((service) async {
                   print("service ${service.characteristics}");
 
-                  if (service.uuid.toString() == "4fafc201-1fb5-459e-8fcc-c5c9c331914b") {
+                  if (service.uuid.toString() ==
+                      "4fafc201-1fb5-459e-8fcc-c5c9c331914b") {
                     service.characteristics.forEach((characteristics) {
-                      if (characteristics.uuid.toString() == "930a6b92-43f9-11ee-be56-0242ac120002") {
+                      if (characteristics.uuid.toString() ==
+                          "930a6b92-43f9-11ee-be56-0242ac120002") {
                         targetCharacterstic = characteristics;
                         setState(() {});
                       }
                     });
                   }
-
                 });
-                List<int>bytes=utf8.encode("SSID:Virus;PASSWORD:12345678");
-               await targetCharacterstic
-                    ?.write(bytes);
+                List<int> bytes = utf8.encode("S:Virus;P:12345678");
+                await targetCharacterstic?.write(bytes);
               },
               child: Text("send data")),
           ElevatedButton(
@@ -173,18 +153,52 @@ class _BlueUIState extends State<BlueUI> {
                 await device?.disconnect();
               },
               child: Text("disconnect")),
-          ElevatedButton(
-              onPressed: () async {
-// Reads all characteristics
-                /*   var characteristics = service.characteristics;
-                for(BluetoothCharacteristic c in characteristics) {
-                  List<int> value = await c.read();
-                  print(value);
-                }*/
+          ElevatedButton(onPressed: () async {}, child: Text("disconnect")),
+          (isLoading)?CircularProgressIndicator(): Container(
+            height: 500,
+            color: Colors.red,
+            width: double.infinity,
+            child: ListView.builder(
+                itemCount: result.length,
+                itemBuilder: (context, index) {
+                  return Container(
+                    height: 100,
+                    color: Colors.grey,
+                    child: ListTile(
+                      subtitle: ElevatedButton(
+                        onPressed: () async {
+                          print("indexxxxxxxxxxx $index");
+                          await result[index].device?.connect();
+                          result[index]
+                              .device
+                              .connectionState
+                              .listen((BluetoothConnectionState state) async {
+                            if (state ==
+                                BluetoothConnectionState.disconnected) {}
+                            if (state == BluetoothConnectionState.connected) {
+                              Navigator.push(context,MaterialPageRoute(builder: (context)=>BluetoothIdPassword(device: result[index].device,)));
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content:
+                                      Text("device connected Successfully"),
+                                ),
+                              );
+                              print("device connected Successfully");
+                            }
+                          });
 
-// Writes to a characteristic
-              },
-              child: Text("disconnect")),
+// Connect to the device
+                        },
+                        child: Text("connect"),
+                      ),
+                      title: Text(
+                        '${result[index].device.platformName}',
+                        style: TextStyle(color: Colors.black, fontSize: 30),
+                      ),
+                    ),
+                  );
+                }),
+          )
         ],
       ),
     );
