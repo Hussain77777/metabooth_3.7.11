@@ -21,11 +21,11 @@ class _BlueUIState extends State<BlueUI> {
       StreamController<List<ScanResult>>();
   List<ScanResult> result = [];
 
-  bool isLoading=false;
+  bool isLoading = false;
 
   Future scanB() async {
     setState(() {
-      isLoading=true;
+      isLoading = true;
     });
     await FlutterBluePlus.startScan(timeout: Duration(seconds: 20))
         .then((value) => null);
@@ -37,8 +37,12 @@ class _BlueUIState extends State<BlueUI> {
     subscription = FlutterBluePlus.scanResults.listen(
       (results) {
         print("hasssssssssssssssssssssssssssss ${results.length}");
+
         results.forEach((data) {
-          if (data.device.name.contains("ESP")) {
+          print("device name ${data.device.platformName}");
+          print("device name ${data.device.platformName}");
+          result.add(data);
+/*          if (data.device.name.contains("ESP")) {
             if (result.isEmpty) {
               result.add(data);
             } else {
@@ -48,7 +52,7 @@ class _BlueUIState extends State<BlueUI> {
                 }
               });
             }
-          }
+          }*/
         });
       },
       // onError(e) => print(e);
@@ -57,7 +61,7 @@ class _BlueUIState extends State<BlueUI> {
       print("after 3 Seconds ");
       setState(() {});
       subscription?.cancel();
-      isLoading=false;
+      isLoading = false;
       setState(() {});
     });
   }
@@ -77,7 +81,7 @@ class _BlueUIState extends State<BlueUI> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("conneeee"), actions: [
+      appBar: AppBar(title: Text("connect"), actions: [
         TextButton(
             onPressed: () {
               scanB();
@@ -154,51 +158,59 @@ class _BlueUIState extends State<BlueUI> {
               },
               child: Text("disconnect")),
           ElevatedButton(onPressed: () async {}, child: Text("disconnect")),
-          (isLoading)?CircularProgressIndicator(): Container(
-            height: 500,
-            color: Colors.red,
-            width: double.infinity,
-            child: ListView.builder(
-                itemCount: result.length,
-                itemBuilder: (context, index) {
-                  return Container(
-                    height: 100,
-                    color: Colors.grey,
-                    child: ListTile(
-                      subtitle: ElevatedButton(
-                        onPressed: () async {
-                          print("indexxxxxxxxxxx $index");
-                          await result[index].device?.connect();
-                          result[index]
-                              .device
-                              .connectionState
-                              .listen((BluetoothConnectionState state) async {
-                            if (state ==
-                                BluetoothConnectionState.disconnected) {}
-                            if (state == BluetoothConnectionState.connected) {
-                              Navigator.push(context,MaterialPageRoute(builder: (context)=>BluetoothIdPassword(device: result[index].device,)));
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content:
-                                      Text("device connected Successfully"),
-                                ),
-                              );
-                              print("device connected Successfully");
-                            }
-                          });
+          (isLoading)
+              ? CircularProgressIndicator()
+              : Container(
+                  height: 500,
+                  color: Colors.red,
+                  width: double.infinity,
+                  child: ListView.builder(
+                      itemCount: result.length,
+                      itemBuilder: (context, index) {
+                        return Container(
+                          height: 100,
+                          color: Colors.grey,
+                          child: ListTile(
+                            subtitle: ElevatedButton(
+                              onPressed: () async {
+                                print("indexxxxxxxxxxx $index");
+                                await result[index].device?.connect();
+                                result[index].device.connectionState.listen(
+                                    (BluetoothConnectionState state) async {
+                                  if (state ==
+                                      BluetoothConnectionState.disconnected) {}
+                                  if (state ==
+                                      BluetoothConnectionState.connected) {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                BluetoothIdPassword(
+                                                  device: result[index].device,
+                                                )));
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text(
+                                            "device connected Successfully"),
+                                      ),
+                                    );
+                                    print("device connected Successfully");
+                                  }
+                                });
 
 // Connect to the device
-                        },
-                        child: Text("connect"),
-                      ),
-                      title: Text(
-                        '${result[index].device.platformName}',
-                        style: TextStyle(color: Colors.black, fontSize: 30),
-                      ),
-                    ),
-                  );
-                }),
-          )
+                              },
+                              child: Text("connect"),
+                            ),
+                            title: Text(
+                              '${result[index].device.platformName}',
+                              style:
+                                  TextStyle(color: Colors.black, fontSize: 30),
+                            ),
+                          ),
+                        );
+                      }),
+                )
         ],
       ),
     );

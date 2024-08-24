@@ -30,8 +30,8 @@ class _LoginScreenState extends State<LoginScreen> {
     });
     _auth
         .signInWithEmailAndPassword(
-            email: emailController.text,
-            password: passwordController.text.toString())
+        email: emailController.text,
+        password: passwordController.text.toString())
         .then((value) async {
       setState(() {
         loading = false;
@@ -39,7 +39,7 @@ class _LoginScreenState extends State<LoginScreen> {
       Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(builder: (context) => AddDeviceScreen()),
-          (route) => false);
+              (route) => false);
     }).onError((error, stackTrace) {
       print("error ${error.toString()}");
       setState(() {
@@ -89,7 +89,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 BackButtonWidget(),
                 Padding(
                   padding:
-                      EdgeInsets.only(top: SizeConfig.height(context, 0.03)),
+                  EdgeInsets.only(top: SizeConfig.height(context, 0.03)),
                   child: MainTitleWidget(
                       title: "Experience the evolution of",
                       titleFontWeight: FontWeight.w500,
@@ -110,11 +110,11 @@ class _LoginScreenState extends State<LoginScreen> {
                 TextFieldWidget(
                     controller: emailController,
                     isPassword: false,
-                    validator: (input) {
-                      if (input!.isEmpty || !(EmailValidator.validate(input))) {
-                        return "Please enter valid Email";
-                      }
-                    }),
+                      validator: (input) {
+                        if (input!.isEmpty || !(EmailValidator.validate(input))) {
+                          return "Please enter valid Email";
+                        }
+                      }),
                 Padding(
                   padding: EdgeInsets.only(
                       bottom: SizeConfig.height(context, 0.015),
@@ -155,7 +155,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ), */
                 Padding(
                   padding:
-                      EdgeInsets.only(top: SizeConfig.height(context, 0.2)),
+                  EdgeInsets.only(top: SizeConfig.height(context, 0.2)),
                   child: Center(
                     child: GestureDetector(
                       onTap: () {
@@ -168,9 +168,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         height: SizeConfig.height(context, 0.075),
                         width: SizeConfig.width(context, 0.8),
                         margin: EdgeInsets.symmetric(
-                            // horizontal: SizeConfig.width(context, 0.05),
-                            //  vertical: SizeConfig.height(context, 0.1),
-                            ),
+                          // horizontal: SizeConfig.width(context, 0.05),
+                          //  vertical: SizeConfig.height(context, 0.1),
+                        ),
                         decoration: BoxDecoration(
                           border: Border.all(color: Color(0xFFC8DE00)),
                           color: Color(0xFFC8DE00),
@@ -181,24 +181,24 @@ class _LoginScreenState extends State<LoginScreen> {
                         child: Center(
                             child: loading == false
                                 ? Text(
-                                    "Login",
-                                    style: TextStyle(
-                                        fontFamily: "Inter",
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.w600,
-                                        fontSize:
-                                            SizeConfig.width(context, 0.05)),
-                                  )
+                              "Login",
+                              style: TextStyle(
+                                  fontFamily: "Inter",
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize:
+                                  SizeConfig.width(context, 0.05)),
+                            )
                                 : CircularProgressIndicator(
-                                    color: GlobalColors.whiteColor,
-                                  )),
+                              color: GlobalColors.whiteColor,
+                            )),
                       ),
                     ),
                   ),
                 ),
                 Padding(
                   padding:
-                      EdgeInsets.only(top: SizeConfig.height(context, 0.02)),
+                  EdgeInsets.only(top: SizeConfig.height(context, 0.02)),
                   child: Center(
                     child: RegisterButtonWidget(
                       subtitle: "Click Here",

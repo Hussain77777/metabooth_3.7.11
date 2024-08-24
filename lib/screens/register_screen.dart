@@ -78,8 +78,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       children: <TextSpan>[
                         TextSpan(
                           text: "Create an  ",
-                          style: TextStyle(height: 0.1,
-                            fontWeight: FontWeight.w500,letterSpacing: -2.5,
+                          style: TextStyle(
+                            height: 0.1,
+                            fontWeight: FontWeight.w500,
+                            letterSpacing: -2.5,
                             fontFamily: "Inter",
                             color: GlobalColors.whiteColor,
                             fontSize: SizeConfig.width(context, 0.11),
@@ -87,7 +89,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ),
                         TextSpan(
                           text: "Account.",
-                          style: TextStyle(letterSpacing: -2.5,
+                          style: TextStyle(
+                            letterSpacing: -2.5,
                             color: GlobalColors.yellowColor,
                             fontWeight: FontWeight.w700,
                             fontFamily: "Inter",
@@ -98,9 +101,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                   ),
                 ),
-
                 Padding(
-                  padding:  EdgeInsets.only(right: SizeConfig.width(context,0.38)),
+                  padding:
+                      EdgeInsets.only(right: SizeConfig.width(context, 0.38)),
                   child: SubTitleWidget(
                       subTitleFontWeight: FontWeight.w300,
                       titleFontWeight: FontWeight.w300,
@@ -214,7 +217,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             child: loading == false
                                 ? Text(
                                     "Register",
-                                    style: TextStyle(fontFamily: "Inter",
+                                    style: TextStyle(
+                                        fontFamily: "Inter",
                                         color: Colors.black,
                                         fontWeight: FontWeight.w600,
                                         fontSize:
